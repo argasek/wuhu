@@ -2,7 +2,7 @@
 
 include_once("header.inc.php");
 
-if ($_POST["mode"]) {
+if (isset($_POST["mode"])) {
   ob_start();
 
   echo "<" . '?xml version="1.0" encoding="utf-8"?' . ">\n";
@@ -132,8 +132,8 @@ preg_match("/<announcementtext isHTML='(.*)'>(.*)<\/announcementtext>/sm", $f, $
 <div class='beamermode'>
   <h3>Announcement</h3>
   <form action="beamer.php" method="post" enctype="multipart/form-data">
-    <textarea name="announcement"><?= trim($ann[2]) ?></textarea><br/>
-    <input type="checkbox" name="isHTML" id="isHTML" style='display:inline-block'<?= ($ann[1] == "true" ? " checked='checked'" : "") ?>/> <label for='isHTML'>Use HTML</label>
+    <textarea name="announcement"><?= isset($ann[2]) ? trim($ann[2]) : "" ?></textarea><br/>
+    <input type="checkbox" name="isHTML" id="isHTML" style='display:inline-block'<?= (isset($ann[1]) && $ann[1] == "true" ? " checked='checked'" : "") ?>/> <label for='isHTML'>Use HTML</label>
     <input type="hidden" name="mode" value="announcement"/>
     <input type="submit" value="Switch to Announcement mode."/>
   </form>
