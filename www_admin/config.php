@@ -235,13 +235,6 @@ function perform(&$msg) {
 
   file_put_contents("activeplugins.serialize", serialize(array()));
 
-  $symlink = array(
-    "prototype.js",
-  );
-  foreach ($symlink as $v) {
-    @symlink(dirname(__FILE__) . "/" . $v, $_POST["main_www_dir"] . "/" . basename($v));
-  }
-
   $msg = "Everything went fine!";
   return 1;
 }
