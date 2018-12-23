@@ -42,35 +42,48 @@ function lipsum_delete_all_compos() {
   foreach ($compos as $compo) {
     $dirname = get_compo_dir($compo);
 
-    rmdir($dirname);
+    // Directory might not exist if there were no entries in the compo,
+    // so it doesn't make sense to remove it. That's why we check it here.
+    if (is_dir($dirname)) {
+      rmdir($dirname);
+    }
   }
   SQLLib::Query("truncate compos;");
 }
 
 set_time_limit(0);
+
 if (isset($_POST["truncate"])) {
-  if ($_POST["truncate"]["compoentries"] == "on") {
+  $removeCompos = isset($_POST["truncate"]["compos"]);
+  $removeCompoEntries = isset($_POST["truncate"]["compoentries"]) || $removeCompos;
+  $removeUsers = isset($_POST["truncate"]["users"]);
+
+  if ($removeCompoEntries) {
     SQLLib::Query("truncate votes_range;");
     SQLLib::Query("truncate votes_preferential;");
     lipsum_delete_all_entries();
-    printf("<div class='success'>Deleted all entries and votes</div>");
+    printf("<div class='success'>Deleted all compo entries and votes</div>");
   }
-  if ($_POST["truncate"]["compos"] == "on") {
-    SQLLib::Query("truncate votes_range;");
-    SQLLib::Query("truncate votes_preferential;");
-    lipsum_delete_all_entries();
+
+  if ($removeCompos) {
     lipsum_delete_all_compos();
-    printf("<div class='success'>Deleted all compos, entries, and votes</div>");
+    printf("<div class='success'>Deleted all compos</div>");
   }
-  if ($_POST["truncate"]["users"] == "on") {
+
+  if ($removeUsers) {
     SQLLib::Query("update compoentries set userid = 0");
     SQLLib::Query("update votekeys set userid = 0");
     SQLLib::Query("truncate users;");
     printf("<div class='success'>Deleted all users</div>");
   }
 }
+
 if (isset($_POST["fill"])) {
-  if ($_POST["fill"]["users"] == "on") {
+  $fillCompoEntries = isset($_POST["fill"]["compoentries"]) ;
+  $fillCompos = isset($_POST["fill"]["compos"]) || $fillCompoEntries;
+  $fillUsers = isset($_POST["fill"]["users"]);
+
+  if ($fillUsers) {
     for ($x = 0; $x < 5; $x++) {
       $name = str_replace(" ", "", lipsum_string(10));
       SQLLib::InsertRow("users", array(
@@ -84,7 +97,8 @@ if (isset($_POST["fill"])) {
     }
     printf("<div class='success'>Generated 5 new users</div>");
   }
-  if ($_POST["fill"]["compos"] == "on") {
+
+  if ($fillCompos) {
     for ($x = 0; $x < 10; $x++) {
       $name = lipsum_string(15);
       SQLLib::InsertRow("compos", array(
@@ -95,14 +109,19 @@ if (isset($_POST["fill"])) {
     }
     printf("<div class='success'>Generated 10 new compos</div>");
   }
-  if ($_POST["fill"]["compoentries"] == "on") {
+
+  if ($fillCompoEntries) {
+
     $compoids = array_map(function ($i) {
       return $i->id;
     }, SQLLib::SelectRows("select id from compos"));
+
     $userids = array_map(function ($i) {
       return $i->id;
     }, SQLLib::SelectRows("select id from users"));
+
     $userids[] = 0;
+
     for ($x = 0; $x < 30; $x++) {
       $output = array();
       $tmp = tempnam(ini_get('upload_tmp_dir'), "WUHULIPSUM_") . ".txt";
