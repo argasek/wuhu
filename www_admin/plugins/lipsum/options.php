@@ -78,6 +78,8 @@ if (isset($_POST["fill"])) {
         "nickname" => $name,
         "password" => hashPassword($name),
         "group" => lipsum_string(10),
+        "regtime" => date("Y-m-d H:i:s", time() + rand(60 * 60, 5 * 60 * 60)),
+        "regip" => "0.0.0.0"
       ));
     }
     printf("<div class='success'>Generated 5 new users</div>");
@@ -148,6 +150,7 @@ if (isset($_POST["fill"])) {
         "title" => $title,
         "author" => lipsum_string(16),
         "comment" => lipsum_string(140),
+        "orgacomment" => lipsum_string(16),
         "localFileName" => $tmp,
         "originalFileName" => basename($tmp),
       ), $output)) {
