@@ -4,3 +4,4 @@ database.inc.php
 result.xml
 .oplock
 activeplugins.serialize
+noscreenshot-*.png
