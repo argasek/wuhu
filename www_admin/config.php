@@ -13,7 +13,7 @@ include_once("lib/Htpasswd.php");
 <html lang="en">
 <head>
   <title>party management system whatever thing config</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2"/>
+  <meta charset="utf-8">
 
   <style type="text/css">
     body {
