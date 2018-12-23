@@ -364,7 +364,7 @@ $directory_export = getRelativeProposedDir("export");
     <tr>
       <td>Party starting day:</td>
       <td>
-        <input name="party_firstday" value="<?= htmlspecialchars($_POST["party_firstday"] ? $_POST["party_firstday"] : date("Y-m-d")) ?>"/>
+        <input name="party_firstday" type="date" value="<?= htmlspecialchars($_POST["party_firstday"] ? $_POST["party_firstday"] : date("Y-m-d")) ?>"/>
       </td>
     </tr>
 
