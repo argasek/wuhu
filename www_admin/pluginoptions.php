@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 
 define("PLUGINOPTIONS",true);
@@ -8,4 +8,3 @@ if (file_exists($file))
   include($file);
 
 include_once("footer.inc.php");
-?>
