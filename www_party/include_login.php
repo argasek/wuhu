@@ -9,7 +9,7 @@ if (is_user_logged_in())
 
 run_hook("login_start");
 
-if ($_POST["login"]) 
+if ($_POST["login"])
 {
   $_SESSION["logindata"] = NULL;
   
@@ -29,20 +29,18 @@ if ($_POST["login"])
   exit();
 }
 if ($_GET["login"]=="failure")
-  echo "<div class='error'>Login failed!</div>";
+  echo "<div class='alert alert-dismissible alert-danger'>Login failed!</div>";
 ?>
-<form action="<?=build_url("Login")?>" method="post" id='loginForm'>
-<div>
+<form action="<?=build_url("Login")?>" method="post" class="text-container">
+<div class="form-group">
   <label for="loginusername">Username:</label>
-  <input id="loginusername" name="login" type="text" required='yes' />
+  <input id="loginusername" name="login" type="text" class="form-control" required='yes' />
 </div>
-<div>
+<div class="form-group">
   <label for="loginpassword">Password:</label>
-  <input id="loginpassword" name="password" type="password" required='yes' />
+  <input id="loginpassword" name="password" type="password" class="form-control" required='yes' />
 </div>
-<div>
-  <input type="submit" value="Go!" />
-</div>
+  <button class="btn btn-primary btn-default" type="submit" value="Go!">Login</button>
 </form>
 <?
 run_hook("login_end");

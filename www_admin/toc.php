@@ -1,5 +1,6 @@
 <?
 include_once("header.inc.php");
+include_once("cmsgen.inc.php");
 
 $rows = SQLLib::selectRows("select title from intranet_minuswiki_pages");
 $pages = array(""=>"- none -");

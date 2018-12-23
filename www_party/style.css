@@ -1,0 +1,285 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    text-rendering: optimizeLegibility;
+    color: #abd;
+    margin: 0;
+    background-color: #04032c;
+    height: 100%;
+    min-height: 100%;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+body > div {
+    background-color: #04032c;
+    background-image: url("images/background.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    width: 100%;
+    min-height: 100%;
+}
+
+
+select {
+    font-size: 2rem;
+}
+
+strong {
+    font-weight: bold;
+    color: #4499FF;
+}
+
+b {
+    color: #bce;
+}
+
+.alert b {
+    color: inherit;
+}
+
+h1 {
+    color: #f0f8ff;
+}
+
+h2 {
+    color: #f2faff;
+    font-size: 4rem;
+}
+
+h2 + .alert {
+    margin-top: 20px;
+}
+
+h3 {
+    font-size: 3rem;
+    color: #dadfe8;
+}
+
+h1, h2, h3 {
+    font-family: "Oswald", sans-serif;
+    text-shadow: 1px 1px 2px rgba(100, 150, 200, 1);
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h4 {
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 0.5em;
+    font-weight: 300;
+    color: #bfd0f3;
+}
+
+a {
+    color: #cde;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.main-container > div > .row > div {
+    /*background-color: rgba(0, 0, 0, 0.6);*/
+    background: linear-gradient(to bottom, rgba(84, 6, 90,0.4) 0%, rgba(29, 1, 58, 0.7) 100%);
+    border-radius: 6px;
+    border: 1px solid rgba(64, 128, 255, 0.2);
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+.navbar a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.navbar-inverse {
+    background-color: #1b0136;
+
+    /*background-color: rgba(0, 0, 30, 0.7);*/
+    box-shadow: 0px 10px 38px 0px rgba(27, 1, 54, 0.65);
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: #236;
+}
+
+#header {
+    text-align: center;
+    margin-top: 64px;
+}
+
+#header h1 {
+    font-size: 6rem;
+    margin: 0;
+}
+
+#menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+#menu ul li {
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+#menu ul li hr {
+    display: none;
+}
+
+label {
+    margin: 5px;
+    display: block;
+}
+
+#livevoteContainer .votes .vote {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin: 3px;
+    background: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    color: black;
+}
+
+#livevoteContainer ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+#livevoteContainer .votes .vote.selected {
+    background: #aea;
+}
+
+#livevoteContainer .votes .vote.loading {
+    outline: red 1px solid;
+}
+
+@media screen and (max-device-width: 900px) {
+    .container {
+        width: 100%;
+        margin: 0;
+    }
+    body > .container {
+        padding: 0px;
+    }
+    .navbar-inverse {
+    }
+    .nav > li {
+        background-color: rgba(72, 103, 143, 0.85);
+        border-bottom: 1px solid #000;
+
+    }
+    .nav > li > a {
+        color: #c9dafd !important;
+    }
+
+}
+
+#livevoteContainer h3 {
+    font-family: "Oswald", sans-serif;
+    font-size: 20px;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 300;
+    color: #bfd0f3;
+}
+
+#livevoteContainer .votes .vote.loading {
+    background-image: url('data:image/gif;base64,R0lGODlhEAAQAPQAAP///wAAAPj4+Dg4OISEhAYGBiYmJtbW1qioqBYWFnZ2dmZmZuTk5JiYmMbGxkhISFZWVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAAFUCAgjmRpnqUwFGwhKoRgqq2YFMaRGjWA8AbZiIBbjQQ8AmmFUJEQhQGJhaKOrCksgEla+KIkYvC6SJKQOISoNSYdeIk1ayA8ExTyeR3F749CACH5BAkKAAAALAAAAAAQABAAAAVoICCKR9KMaCoaxeCoqEAkRX3AwMHWxQIIjJSAZWgUEgzBwCBAEQpMwIDwY1FHgwJCtOW2UDWYIDyqNVVkUbYr6CK+o2eUMKgWrqKhj0FrEM8jQQALPFA3MAc8CQSAMA5ZBjgqDQmHIyEAIfkECQoAAAAsAAAAABAAEAAABWAgII4j85Ao2hRIKgrEUBQJLaSHMe8zgQo6Q8sxS7RIhILhBkgumCTZsXkACBC+0cwF2GoLLoFXREDcDlkAojBICRaFLDCOQtQKjmsQSubtDFU/NXcDBHwkaw1cKQ8MiyEAIfkECQoAAAAsAAAAABAAEAAABVIgII5kaZ6AIJQCMRTFQKiDQx4GrBfGa4uCnAEhQuRgPwCBtwK+kCNFgjh6QlFYgGO7baJ2CxIioSDpwqNggWCGDVVGphly3BkOpXDrKfNm/4AhACH5BAkKAAAALAAAAAAQABAAAAVgICCOZGmeqEAMRTEQwskYbV0Yx7kYSIzQhtgoBxCKBDQCIOcoLBimRiFhSABYU5gIgW01pLUBYkRItAYAqrlhYiwKjiWAcDMWY8QjsCf4DewiBzQ2N1AmKlgvgCiMjSQhACH5BAkKAAAALAAAAAAQABAAAAVfICCOZGmeqEgUxUAIpkA0AMKyxkEiSZEIsJqhYAg+boUFSTAkiBiNHks3sg1ILAfBiS10gyqCg0UaFBCkwy3RYKiIYMAC+RAxiQgYsJdAjw5DN2gILzEEZgVcKYuMJiEAOwAAAAAAAAAAAA==');
+    color: #888;
+}
+
+.vote-entry select {
+    float: right;
+}
+
+.vote-entry {
+    /*background-color: rgba(35, 6, 41, 0.6);*/
+    /*box-shadow: 0px 0px 4px 2px rgba(20,0,40,0.5);*/
+    background: linear-gradient(to bottom, rgba(67,67,107,1) 0%, rgba(67,67,107,0.4) 100%);
+    border: 1px solid rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(0,0,0,0.5);
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 310px;
+}
+
+.vote-entry .title {
+    padding-bottom: 0.5em;
+    min-height: 3em;
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.vote-entry .title b, .vote-entry .title span {
+    color: #ccddff;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.vote-entry .title b {
+    font-weight: 500;
+}
+
+.vote-entry-voter {
+    margin-bottom: 1rem;
+}
+
+.vote-entry-screenshot {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.vote-entry-screenshot > a {
+    display: block;
+    text-align: center;
+}
+
+.vote-entry-screenshot > a > img {
+    max-width: 100%;
+    min-width: 100%;
+    border-radius: 4px;
+}
+
+
+.vote-entry-playing-order {
+    margin-top: 0;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+/*#votesubmit, #votingform h3 {*/
+    /*clear: both;*/
+/*}*/
+
+#visitors td:nth-child(2) {
+    font-weight: bold;
+}
+
+
+#profile, .text-container {
+    margin-top: 2rem;
+}
+
+
+.votelist > div {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+

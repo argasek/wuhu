@@ -1066,7 +1066,8 @@ var Reveal = (function(){
 			// Prefer applying scale via zoom since Chrome blurs scaled content
 			// with nested transforms
 			if( typeof dom.slides.style.zoom !== 'undefined' && !navigator.userAgent.match( /(iphone|ipod|ipad|android)/gi ) ) {
-				dom.slides.style.zoom = scale;
+				// Argasek
+				// dom.slides.style.zoom = scale;
 			}
 			// Apply scale transform as a fallback
 			else {
@@ -1092,6 +1093,7 @@ var Reveal = (function(){
 					}
 					else {
 						slide.style.top = Math.max( - ( getAbsoluteHeight( slide ) / 2 ) - slidePadding, -slideHeight / 2 ) + 'px';
+						console.info(slide.style.top);
 					}
 				}
 				else {

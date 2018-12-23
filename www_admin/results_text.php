@@ -1,8 +1,15 @@
 <?
 error_reporting(E_ALL ^ E_NOTICE);
-include_once("bootstrap.inc.php");
+include_once("sqllib.inc.php");
+include_once("setting.inc.php");
+include_once("thumbnail.inc.php");
+include_once("common.inc.php");
+include_once("hooks.inc.php");
+include_once("cmsgen.inc.php");
+include_once("votesystem.inc.php");
+header("Content-Type: text/plain; charset=utf-8");
 
-$encoding = "iso-8859-1";
+$encoding = "utf-8";
 if ($_GET["encoding"] == "utf-8")
   $encoding = "utf-8";
 
@@ -12,12 +19,9 @@ function convertEncoding($text)
   return mb_convert_encoding( $text, $encoding, "utf-8" );
 }
 
-if (!$_GET["suppressHeader"])
-{
-  header("Content-Type: text/plain; charset=".$encoding);
-  if ($_GET["filename"])
-    header("Content-disposition: attachment; filename=".$_GET["filename"]);
-}
+header("Content-Type: text/plain; charset=".$encoding);
+if ($_GET["filename"])
+  header("Content-disposition: attachment; filename=".$_GET["filename"]);
 loadPlugins();
 
 $voter = SpawnVotingSystem();
@@ -29,9 +33,9 @@ if (file_exists("results_header.txt"))
   include_once("results_header.txt");
 else
   echo "The [results_header.txt] file is missing, upload one to include a cool ASCII header!\n\n";
-  
+
 $c = SQLLib::selectRows("select * from compos order by start,id");
-foreach($c as $compo) 
+foreach($c as $compo)
 {
   printf("\n\n\n  %s\n\n",strtoupper($compo->name));
 
@@ -44,22 +48,22 @@ foreach($c as $compo)
 
   global $results;
   $results = array();
-  $results = $voter->CreateResultsFromVotes( $compo, $entries );
+  $results = $voter->CreateResultsFromVotes( $compo, $entries, true );
   run_hook("voting_resultscreated_presort",array("results"=>&$results));
-  arsort($results);
+
   $n = 1;
   $lastpoints = -1;
-  
-  
-  foreach($results as $k=>$v) 
+
+  foreach($results as $k=>$v)
   {
     $e = SQLLib::selectRow(sprintf_esc("select * from compoentries where id = %d",$k));
     $title = sprintf("%s - %s",convertEncoding(trim($e->title)),convertEncoding(trim($e->author)));
     $title = wordwrap($title,50,"\n".str_pad(" ",27),1);
-    if ($lastpoints==$v)
+    if ($lastpoints==$v) {
       printf("        #%02d   %3d pts    %s\n",$e->playingorder,$v,$title);
-    else
+    } else {
       printf("   %2d.  #%02d   %3d pts    %s\n",$n,$e->playingorder,$v,$title);
+    }
     $lastpoints=$v;
     $n++;
   }

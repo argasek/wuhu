@@ -141,7 +141,7 @@ hr {
 }
 dt {
   font-weight: bold;
-  color: #888;
+  color: #d77b2e;
   margin-top: 18px;
   margin-bottom: 5px;
   font-size: 11px;
@@ -293,10 +293,6 @@ input[type='submit'] {
   margin: 5px 0;
 }
 
-#votekeys_print textarea {
-  width: 200px;
-  height: 70px;
-}
 
 #uploadform {
   border-collapse: collapse;
@@ -319,16 +315,13 @@ input[type='submit'] {
 }
 
 .results {
-  width: 800px;
+  width: 600px;
   border-collapse: collapse;
 }
 .results td, .results th {
   border: 1px solid #222;
   padding: 5px;
 }
-.results tr td:nth-child(1) { width: 30px; text-align: right; }
-.results tr td:nth-child(2) { width: 40px; text-align: right; }
-.results tr td:nth-child(3) { width: 30px; text-align: right; }
 
 
 .enoughentries {
@@ -365,10 +358,7 @@ label {
   margin-top: 10px;
   margin-bottom: 5px;
 }
-input[type="radio"] + label,
-input[type="checkbox"] + label {
-  display: inline;
-}
+
 .beamermode label, .beamermode input {
   display: block;
 }
@@ -383,47 +373,7 @@ pre {
   margin: 5px;
 }
 
-dl#breakdown dt span.filename {
-  color: #555;
-}
-
-#slides {
-  list-style: none;
-}
-#slides li {
-  list-style: none;
-  display: inline-block;
-  width: 250px;
-  height: 180px;
-  margin-right: 5px;
-  vertical-align: top;
-}
-#slides li .contents {
-  padding: 5px;
-  width: 240px;
-  height: 120px;
-  overflow: hidden;
-  margin-bottom: 5px;
-}
-#slides li .contents img,
-#slides li .contents video {
-  width: 240px;
-}
-#slides li .contents pre {
-  font-size: 9px;
-  overflow: hidden;
-}
-#slideedit img,
-#slideedit video {
-  max-width: 70vw;
-}
-#slideedit textarea {
-  display: block;
-  width: 70vw;
-  height: 60vh;
-}
-
-@media screen and (max-width : 1024px) 
+@media screen and (max-device-width : 1024px)
 {
   .minuswiki td {
     padding-left: 6px;

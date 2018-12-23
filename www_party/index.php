@@ -42,7 +42,7 @@ if (!$content)
 {
   $row = SQLLib::selectRow(sprintf_esc("select type from intranet_toc where link='%s'",$pagetitle));
   if ($row->type=='loggedin' && (!$_SESSION["logindata"] || !$_SESSION["logindata"]->id)) {
-    $content = "UNAUTHORIZED REQUEST!";
+    $content = "<div class='row'><div class='col-xs-12'><h1>Unauthorized request!</h1></div></div>";
   } else
     $content = $wiki->GetPage( $page );
 }
@@ -67,7 +67,7 @@ foreach($rows as $r) {
 
 run_hook("index_menu_parse",array("menu"=>&$menuArray));
 
-$menu = "<ul>\n";
+$menu = "<ul class=\"nav navbar-nav\">\n";
 foreach($menuArray as $v)
   $menu .= "<li>".$v."</li>\n";
 $menu .= "</ul>\n";

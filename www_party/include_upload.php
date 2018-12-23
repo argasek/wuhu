@@ -31,9 +31,9 @@ if ($_POST) {
   $msg = "";
   $id = perform($msg);
   if ($id) {
-    echo "<div class='success'>Upload successful! Your entry number is <b>".$id."</b>.</div>";
+    echo "<div class='alert alert-dismissible alert-success'>Upload successful! Your entry number is <b>".$id."</b>.</div>";
   } else {
-    echo "<div class='failure'>".$msg."</div>";
+    echo "<div class='alert alert-dismissible alert-danger'>".$msg."</div>";
   }
 }
 
@@ -44,14 +44,14 @@ global $page;
 <form action="<?=$_SERVER["REQUEST_URI"]?>" method="post" enctype="multipart/form-data" id='uploadEntryForm'>
 <div id="entryform">
 <div class='formrow'>
-  <label for='compo'>Compo:</label>
-  <select id='compo' name="compo" required='yes'>
-    <option value=''>-- Please select a compo:</option>
+  <label>Compo:</label>
+  <label><select name="compo">
+    <option value='0'>-- Please select a compo:</option>
 <?
 foreach($s as $t)
   printf("  <option value='%d'%s>%s</option>\n",$t->id,$t->id==$_POST["compo"] ? ' selected="selected"' : "",$t->name);
 ?>  
-  </select>
+  </select></label>
 </div>
 <div class='formrow'>
   <label for='title'>Product title:</label>

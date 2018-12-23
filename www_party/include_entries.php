@@ -30,9 +30,9 @@ if ($_POST["entryid"]) {
   $msg = "";
   $id = perform($msg);
   if ($id) {
-    echo "<div class='success'>Update successful!</div>";
+    echo "<div class='alert alert-dismissible alert-success'>Update successful!</div>";
   } else {
-    echo "<div class='failure'>Error: ".$msg."</div>";
+    echo "<div class='alert alert-dismissible alert-danger'>Error: ".$msg."</div>";
   }
 }
 global $page;
@@ -137,23 +137,34 @@ if ($_GET["id"]) {
 <?
 } else {
   $entries = SQLLib::selectRows(sprintf_esc("select * from compoentries where userid=%d",get_user_id()));
-  echo "<div class='entrylist' id='editmyentries'>\n";
+  echo "<table class='entrylist'>";
+  echo "<tr>";
+  echo "  <th>#</th>";
+  echo "  <th>Screenshot</th>";
+  echo "  <th>Compo</th>";
+  echo "  <th>Title</th>";
+  echo "  <th>Author</th>";
+  echo "  <th>Options</th>";
+  run_hook("editentries_endheader");
+  echo "</tr>";
   global $entry;
   foreach ($entries as $entry) 
   {
     $compo = get_compo( $entry->compoid );
-    echo "<div class='entry'>\n";
-    printf("<div class='screenshot'><a href='screenshot.php?id=%d' target='_blank'><img src='screenshot.php?id=%d&amp;show=thumb'/></a></div>\n",$entry->id,$entry->id);
-    printf("<div class='compo'>%s</div>\n",_html($compo->name));
-    printf("<div class='title'><b>%s</b> - %s</div>\n",_html($entry->title),_html($entry->author));
-    
+    echo "<tr>";
+    printf("<td>#%d</td>",$entry->id);
+    printf("<td><a href='screenshot.php?id=%d' target='_blank'><img src='screenshot.php?id=%d&amp;show=thumb'/></a></td>",$entry->id,$entry->id );
+    printf("<td>%s</td>",_html($compo->name) );
+    printf("<td>%s</td>",_html($entry->title) );
+    printf("<td>%s</td>",_html($entry->author) );
+    $compo = get_compo( $entry->compoid );
     if ($compo->uploadopen || $compo->updateopen)
-      printf("<div class='editlink'><a href='%s&amp;id=%d'>Edit entry</a></div>",$_SERVER["REQUEST_URI"],$entry->id );
-      
+      printf("<td><a href='%s&amp;id=%d'>Edit entry</a></td>",$_SERVER["REQUEST_URI"],$entry->id );
+    else
+      printf("<td>&nbsp;</td>" );
     run_hook("editentries_endrow",array("entry"=>$entry));
-    
-    echo "</div>\n";
+    echo "</tr>";
   }
-  echo "</div>";
+  echo "</table>";
 }
 ?>

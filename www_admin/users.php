@@ -20,21 +20,21 @@ if (isset($_GET["id"])) {
   $user = SQLLib::selectRow(sprintf_esc("select * from users where id = %d", (int)$_GET["id"]));
   printf("<h2>Users - " . htmlspecialchars($user->username) . "</h2>");
 
-  $votekey = SQLLib::selectRow(sprintf_esc("select * from votekeys where userid = %d", (int)$_GET["id"]));
+  $votekey = SQLLib::selectRow(sprintf_esc("select * from votekeys where userid = %d",(int)$_GET["id"]));
 
   printf("<ul>");
-  printf("  <li><b>Nick:</b> %s</li>\n", htmlspecialchars($user->nickname));
-  printf("  <li><b>Group:</b> %s</li>\n", htmlspecialchars($user->group));
-  printf("  <li><b>Public:</b> %s</li>\n", $user->visible ? "yes" : "no");
-  printf("  <li><b>IP:</b> %s</li>\n", $user->regip);
-  printf("  <li><b>Registration time:</b> %s</li>\n", $user->regtime);
+  printf("  <li><b>Nick:</b> %s</li>\n",htmlspecialchars($user->nickname));  
+  printf("  <li><b>Group:</b> %s</li>\n",htmlspecialchars($user->group));  
+  printf("  <li><b>Public:</b> %s</li>\n",$user->visible?"yes":"no");  
+  printf("  <li><b>IP:</b> %s</li>\n",$user->regip);  
+  printf("  <li><b>Registration time:</b> %s</li>\n",$user->regtime);  
   if ($votekey)
-    printf("  <li><b>Associated votekey:</b> %s</li>\n", $votekey->votekey);
+    printf("  <li><b>Associated votekey:</b> %s</li>\n",$votekey->votekey);  
   printf("</ul>");
 
   echo "<hr/>\n";
 
-  $entries = SQLLib::selectRows(sprintf_esc("select *,compoentries.id as id from compoentries join compos on compos.id=compoentries.compoid where userid = %d", $_GET["id"]));
+$entries = SQLLib::selectRows(sprintf_esc("select *,compoentries.id as id from compoentries join compos on compos.id=compoentries.compoid where userid = %d",$_GET["id"]));
   ?>
   <table class='minuswiki'>
   <tr>
@@ -48,7 +48,7 @@ if (isset($_GET["id"])) {
   </tr>
   <?php
   $n = 1;
-  foreach ($entries as $t) {
+foreach($entries as $t) {
     printf("<tr>\n");
     printf("  <td>%d.</td>\n", $t->playingorder);
     printf("  <td>#%d</td>\n", $t->id);
@@ -63,7 +63,7 @@ if (isset($_GET["id"])) {
   //printf("<tr><td colspan='9'><a href='compos.php?new=add'>add new compo</a></td></tr>\n");
   echo "</table>\n";
 
-  run_hook("admin_edituser_beforeactions", array("user" => $user));
+run_hook("admin_edituser_beforeactions",array("user"=>$user));
 
   ?>
   <hr/>
@@ -99,7 +99,7 @@ if (isset($_GET["id"])) {
   $s = SQLLib::selectRows("select *, " .
     " (" . $sq . ") as votes, " .
     " (select count(*) from compoentries where compoentries.userid = u.id) as entries " .
-    " from users as u order by regtime");
+     " from users as u order by regtime");
   foreach ($s as $t) {
     printf("<tr>");
     printf("  <td>%d.</td>", $n++);

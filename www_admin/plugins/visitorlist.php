@@ -39,9 +39,11 @@ function visitorlist_addfield( )
   if (is_user_logged_in()) 
     $checked = get_current_user_data()->visible;
 ?>
-<div>
-  <label for="public">Do you want to appear on the visitors listing?</label>
-  <input id="public" name="public" type="checkbox"<?=($checked?' checked="checked"':'')?>/>
+<div class="checkbox">
+    <label>
+      <input id="public" name="public" type="checkbox"<?=($checked?' checked="checked"':'')?>/>
+      Do you want to appear on the visitors listing?
+    </label>
 </div>
 <?
 }

@@ -1,147 +1,289 @@
-body 
-{
-  background: #000;
-  background-color: #000; 
-  color: #fff;
+html, body {
+    height: 100%;
 }
-body > .overview {
-  background: #888;
-} 
 
-.reveal .slides > section div.container {
-  width: 100%;
-  position: absolute;
+body {
+    min-height: 100%;
+    width: 100%;
+    background-image: url("images/RW_2016_plansza_1080p_v04.png");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    text-rendering: optimizeLegibility;
+    color: #abd;
+    margin: 0;
+    background-color: #000c18;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+body.mode-rotation {
+    background-image: none;
+}
+
+.reveal {
+
 }
 
 .reveal img, .reveal video, .reveal iframe {
-  max-height: 100%;
-  max-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .reveal .slides > section, .reveal .slides > section > section {
-  padding: 0px;
+    padding: 0;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal p {
+    line-height: normal;
 }
 
 /* actual CSSery */
 
-.reveal .slides > section.rotationSlide.text,
-.reveal .slides > section.announcementSlide,
-.reveal .slides > section.countdownSlide,
-.reveal .slides > section.compoDisplaySlide,
-.reveal .slides > section.prizegivingSlide,
-.reveal #pip-countdown,
-.dummy
-{
-  font-family: "Segoe UI";
-  font-size: 64px;
-}
-.reveal .slides > section.rotationSlide.image div.container
-{
-  line-height: 0px;
-}
-.reveal .slides > section.countdownSlide div > *
-{
-}
-.reveal .slides > section.countdownSlide  .eventName,
-.reveal .slides > section.countdownSlide .countdownTimer
-{
-  font-size: 96px;
-  margin: 60px;
-  font-weight: bold;
-}
-.reveal .slides > section.compoDisplaySlide.intro .eventName,
-.reveal .slides > section.compoDisplaySlide.intro .now,
-.reveal .slides > section.compoDisplaySlide.outro .eventName,
-.reveal .slides > section.compoDisplaySlide.outro .over,
-.reveal .slides > section.prizegivingSlide.intro .header,
-.dummy
-{
-  font-size: 96px;
-  margin: 60px;
-  font-weight: bold;
+/*.reveal .slides > section.rotationSlide.text,*/
+/*.reveal .slides > section.announcementSlide,*/
+/*.reveal .slides > section.countdownSlide,*/
+/*.reveal .slides > section.compoDisplaySlide,*/
+/*.reveal .slides > section.prizegivingSlide,*/
+/*.dummy {*/
+/*color: #f0f8ff;*/
+/*font-family: 'oswaldregular';*/
+/*text-shadow: 1px 1px 2px rgba(100, 150, 200, 1);*/
+/*font-weight: normal;*/
+/*font-size: 64px;*/
+/*}*/
+
+/*.reveal .slides > section.countdownSlide div > * {*/
+/*}*/
+
+/*.reveal .slides > section.countdownSlide .eventName,*/
+/*.reveal .slides > section.countdownSlide .countdownTimer {*/
+/*font-size: 96px;*/
+/*margin: 60px;*/
+/*font-weight: bold;*/
+/*}*/
+
+/*.reveal .slides > section.compoDisplaySlide.intro .eventName,*/
+/*.reveal .slides > section.compoDisplaySlide.intro .now,*/
+/*.reveal .slides > section.compoDisplaySlide.outro .eventName,*/
+/*.reveal .slides > section.compoDisplaySlide.outro .over,*/
+/*.reveal .slides > section.prizegivingSlide.intro .header,*/
+/*.dummy {*/
+/*font-size: 96px;*/
+/*margin: 60px;*/
+/*font-weight: bold;*/
+/*}*/
+
+/*.reveal .slides > section.compoDisplaySlide.entry .eventName,*/
+/*.reveal .slides > section.prizegivingSlide.entry .eventName,*/
+/*.dummy {*/
+/*color: #FFFFFF;*/
+/*position: absolute;*/
+/*right: 40px;*/
+/*text-shadow: 0 0 15px #000000;*/
+/*top: 39px;*/
+/*}*/
+
+/*.reveal .slides > section.compoDisplaySlide.entry .number,*/
+/*.reveal .slides > section.prizegivingSlide.entry .ranking,*/
+/*.dummy {*/
+/*float: left;*/
+/*font-size: 256px;*/
+/*font-weight: bold;*/
+/*height: 500px;*/
+/*margin-right: 50px;*/
+/*padding-top: 50px;*/
+/*text-align: right;*/
+/*width: 300px;*/
+/*}*/
+
+/*.reveal .slides > section.compoDisplaySlide.entry .title,*/
+/*.reveal .slides > section.prizegivingSlide.entry .title,*/
+/*.dummy {*/
+/*font-weight: bold;*/
+/*text-align: left;*/
+/*}*/
+
+/*.reveal .slides > section.compoDisplaySlide.entry .author,*/
+/*.reveal .slides > section.prizegivingSlide.entry .author,*/
+/*.dummy {*/
+/*text-align: left;*/
+/*}*/
+
+/*.reveal .slides > section.compoDisplaySlide.entry .comment,*/
+/*.reveal .slides > section.prizegivingSlide.entry .points,*/
+/*.dummy {*/
+/*text-align: left;*/
+/*font-size: 32px;*/
+/*line-height: normal;*/
+/*}*/
+
+/*.reveal .slides div.container {*/
+/*background-color: rgba(0, 0, 0, 0.4);*/
+/*border-top: 4px solid #000;*/
+/*border-bottom: 4px solid #000;*/
+/*}*/
+
+.reveal .slides {
+    color: #f0f8ff;
+    font-family: 'Oswald';
+    /*text-shadow: 1px 1px 2px rgba(100, 150, 200, 1);*/
+    /*font-weight: normal;*/
+    /*font-size: 64px;*/
+
 }
 
-.reveal .slides > section.compoDisplaySlide.entry .eventName,
-.reveal .slides > section.prizegivingSlide.entry .eventName,
-.dummy
-{
-    color: #FFFFFF;
+/* ---------------------- ENTRY ------------------------ */
+
+.reveal .slides > section.rotationSlide div.container,
+.reveal .slides > section.compoDisplaySlide.entry div.container {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    right: 40px;
-    text-shadow: 0 0 15px #000000;
-    top: 39px;
 }
 
-.reveal .slides > section.compoDisplaySlide.entry .number,
-.reveal .slides > section.prizegivingSlide.entry .ranking,
-.dummy
-{
-    float: left;
-    font-size: 256px;
-    font-weight: bold;
-    height: 500px;
-    margin-right: 50px;
-    padding-top: 50px;
-    text-align: right;
-    width: 300px;
+.reveal .slides > section.compoDisplaySlide.entry .upper,
+.reveal .slides > section.compoDisplaySlide.entry .lower {
+    border-top: 6px solid rgba(157, 177, 243, 0.42);
+    border-bottom: 6px solid rgba(157, 177, 243, 0.42);
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 0px 20px 20px 0;
+    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
 }
+
+.reveal .slides > section.compoDisplaySlide.entry .upper {
+    margin-top: 2.5%;
+}
+
+.reveal .slides > section.compoDisplaySlide.entry .lower {
+    margin-top: 2.5%;
+    height: 62.5%;
+    position: relative;
+}
+
 .reveal .slides > section.compoDisplaySlide.entry .title,
-.reveal .slides > section.prizegivingSlide.entry .title,
-.dummy
-{
-    font-weight: bold;
-    text-align: left;
+.reveal .slides > section.compoDisplaySlide.entry .author {
+    line-height: normal;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-shadow: 2px 2px 2px rgba(100, 150, 200, 1);
+    color: rgba(242, 248, 255, 0.9);
 }
-.reveal .slides > section.compoDisplaySlide.entry .author, 
-.reveal .slides > section.prizegivingSlide.entry .author,
-.dummy
-{
-    text-align: left;
+
+.reveal .slides > section.compoDisplaySlide.entry .title {
+    font-size: 8vh;
 }
-.reveal .slides > section.compoDisplaySlide.entry .comment, 
-.reveal .slides > section.prizegivingSlide.entry .points,
-.dummy
-{
+
+.reveal .slides > section.compoDisplaySlide.entry .author {
+    font-size: 6vh;
+    color: #ccddff;
+    text-shadow: 2px 2px 2px rgb(72, 103, 143);
+}
+
+.reveal .slides > section.compoDisplaySlide.entry .number:before {
+    content: '#';
+}
+
+.reveal .slides > section.compoDisplaySlide.entry .number {
+    line-height: normal;
     text-align: left;
-    font-size: 32px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: rgba(150, 67, 143, 0.77);
+    border-radius: 20px;
+    /*width: 30%;*/
+    font-size: 16vh;
+}
+
+.reveal .slides > section.compoDisplaySlide.entry .comment,
+.reveal .slides > section.compoDisplaySlide.entry .eventName {
+    line-height: normal;
+    position: absolute;
+    text-align: right;
+    padding-right: 20px;
+    right: 0;
+    width: 70%;
+}
+
+.reveal p, .reveal div {
+    font-size: 2.2vw;
     line-height: normal;
 }
 
-.reveal #pip-countdown {
-  width: 200px;
-  font-size: 32px;
-  background: rgba(0,0,0,0.75);
-  z-index: 25;
-  position: absolute;
+.reveal p {
+    color: rgb(186, 216, 232);
 }
-.reveal #pip-countdown div {
-  text-align: center;
-  margin: 5px;
+.reveal .slides > section.compoDisplaySlide.entry .comment {
+    top: 20px;
+    height: 70%;
+    font-size: 2.2vw;
+    color: rgb(186, 216, 232);
 }
-.reveal #pip-countdown .eventName,
-.reveal #pip-countdown .countdownTimer {
-  font-weight: bold;
+
+.reveal .slides > section.compoDisplaySlide.entry .eventName {
+    bottom: 0;
+    height: 20%;
+    font-size: 8vh;
+    color: rgb(218, 219, 255);
+    text-shadow: 2px 2px 2px rgb(29, 1, 58);
 }
-.reveal .slides section.prizegivingSlide.prizinator .container {
-  height: 90vh;
-  max-height: 90vh;
-  overflow: hidden;
+
+/* ---------------------- INTRO, OUTRO ------------------------ */
+
+
+.reveal .slides > section.eventSlide div.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: static;
+    height: 100%;
 }
-.reveal .slides section.prizegivingSlide.prizinator ul.prizinator li {
-  transition: max-height ease-in-out 300ms;
-  max-height: 30vh;
-  overflow: hidden;
-  position: relative;
+
+.reveal .slides > section.eventSlide div.wrapper {
+    border-top: 6px solid rgba(157, 177, 243, 0.42);
+    border-bottom: 6px solid rgba(157, 177, 243, 0.42);
+    background-color: rgba(0, 0, 0, 0.5);
+    /*padding: 20px 0 20px 0*/
+    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    min-height: 20vw;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.2vw;
+    padding-bottom: 2.2vw;
 }
-.reveal .slides section.prizegivingSlide.prizinator ul.prizinator li.hidden {
-  max-height: 0;
+
+.reveal .slides > section.eventSlide .textMedium,
+.reveal .slides > section.eventSlide .textLarge,
+.reveal .slides > section.eventSlide .textHuge {
+    line-height: normal;
+    text-shadow: 2px 2px 2px rgba(100, 150, 200, 1);
 }
-.reveal .slides section.prizegivingSlide.prizinator ul.prizinator li span.bar {
-  position: absolute;
-  height: 100%;
-  background: rgba(255,255,255,0.25);
-  transition: width ease-in-out 600ms;
+
+.reveal .slides > section.eventSlide .textHuge {
+    font-size: 16vh;
 }
-.reveal .slides section.prizegivingSlide.prizinator ul.prizinator li.hidden span.bar {
-  width: 0% !important;
+
+.reveal h1,
+.reveal .slides > section.eventSlide .textLarge {
+    font-size: 10vh;
+}
+
+.reveal h2,
+.reveal .slides > section.eventSlide .textMedium {
+    color: rgb(189, 205, 238);
+    font-size: 6vh;
+    text-shadow: 2px 2px 2px rgb(72, 103, 143);
+}
+
+.reveal .slides .prizegivingSlide .points {
+    color: #68a0c0;
+    text-shadow: 2px 2px 2px rgb(72, 103, 143);
 }

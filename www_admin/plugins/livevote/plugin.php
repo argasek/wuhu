@@ -71,7 +71,7 @@ function livevote_content( $data )
     
     die( json_encode($a) );
   }
-  $content = "<div id='livevoteContainer'></div>";
+  $content = "<div class='row'><div class='col-xs-12' id='livevoteContainer'></div></div>";
   ob_start();
 ?>
 <script type="text/javascript" src="prototype.js"></script>
@@ -133,7 +133,7 @@ function reloadVotes()
         if (!liEntry)
         {
           liEntry = new Element("li",{"data-entryid":entry.id,"data-playingorder":entry.playingorder});
-          liEntry.insert( new Element("h3") );
+          liEntry.insert( new Element("h3",{"class":"title"}) );
           liEntry.insert( new Element("ul",{"class":"votes"}) );
           for(var i = <?=(int)$voter->minVote?>; i <= <?=(int)$voter->maxVote?>; i++)
           {
