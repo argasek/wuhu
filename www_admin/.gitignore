@@ -1,0 +1,6 @@
+.htpasswd
+.htaccess
+database.inc.php
+result.xml
+.oplock
+activeplugins.serialize
