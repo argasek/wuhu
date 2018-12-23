@@ -29,6 +29,7 @@
               } else if (document.documentElement.webkitRequestFullScreen) {
                   document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
               }
+              document.body.requestPointerLock();
           } else {
               if (document.cancelFullScreen) {
                   document.cancelFullScreen();
@@ -37,6 +38,7 @@
               } else if (document.webkitCancelFullScreen) {
                   document.webkitCancelFullScreen();
               }
+              document.exitPointerLock()
           }
       }
 
