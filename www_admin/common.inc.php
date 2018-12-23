@@ -139,7 +139,7 @@ function handleUploadedRelease( $dataArray, &$output )
   
   $entry = null;
   $id = null;
-  if ($dataArray["id"]) 
+  if (isset($dataArray["id"]))
   {
     // existing release
     $id = (int)$dataArray["id"];
@@ -171,7 +171,7 @@ function handleUploadedRelease( $dataArray, &$output )
   }
   
   run_hook("admin_common_handleupload_beforecompocheck",array("dataArray"=>$dataArray,"output"=>&$output));
-  if ($output["error"])
+  if (isset($output["error"]))
   {
     return false;
   }
@@ -265,11 +265,6 @@ function handleUploadedRelease( $dataArray, &$output )
   }
 
   run_hook("admin_common_handleupload_beforedb",array("sqlData"=>&$sqldata,"output"=>&$output));
-  if ($hookError)
-  {
-    $output["error"] = $hookError;
-    return false;
-  }
 
   if ($id)
   {
@@ -286,7 +281,7 @@ function handleUploadedRelease( $dataArray, &$output )
   }
   run_hook("admin_common_handleupload_afterdb",array("entryID"=>$id));
     
-  if (is_uploaded_file($dataArray["localScreenshotFile"])) {
+  if (isset($dataArray["localScreenshotFile"]) && is_uploaded_file($dataArray["localScreenshotFile"])) {
     list($width,$height,$type) = getimagesize($dataArray["localScreenshotFile"]);
     if ($type==IMAGETYPE_GIF ||
         $type==IMAGETYPE_PNG ||
