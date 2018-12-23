@@ -56,13 +56,18 @@ set_time_limit(0);
 if (isset($_POST["truncate"])) {
   $removeCompos = isset($_POST["truncate"]["compos"]);
   $removeCompoEntries = isset($_POST["truncate"]["compoentries"]) || $removeCompos;
+  $removeVotes = isset($_POST["truncate"]["votes"]) || $removeCompoEntries;
   $removeUsers = isset($_POST["truncate"]["users"]);
 
-  if ($removeCompoEntries) {
+  if ($removeVotes) {
     SQLLib::Query("truncate votes_range;");
     SQLLib::Query("truncate votes_preferential;");
+    printf("<div class='success'>Deleted all votes</div>");
+  }
+
+  if ($removeCompoEntries) {
     lipsum_delete_all_entries();
-    printf("<div class='success'>Deleted all compo entries and votes</div>");
+    printf("<div class='success'>Deleted all compo entries</div>");
   }
 
   if ($removeCompos) {
@@ -79,6 +84,7 @@ if (isset($_POST["truncate"])) {
 }
 
 if (isset($_POST["fill"])) {
+  $fillVotes = isset($_POST["fill"]["votes"]) ;
   $fillCompoEntries = isset($_POST["fill"]["compoentries"]) ;
   $fillCompos = isset($_POST["fill"]["compos"]) || $fillCompoEntries;
   $fillUsers = isset($_POST["fill"]["users"]);
@@ -178,24 +184,65 @@ if (isset($_POST["fill"])) {
     }
     printf("<div class='success'>Generated 30 new entries</div>");
   }
-}
 
+  if ($fillVotes) {
+    // Reset votes, we don't want to have any duplicate rows in this table
+    SQLLib::Query("truncate votes_range;");
+
+    // Make each user range vote on each entry
+    $userids = array_map(function ($i) {
+      return $i->id;
+    }, SQLLib::SelectRows("select id from users"));
+    $compos = SQLLib::SelectRows("select compoid, playingorder from compoentries");
+    foreach ($compos as $compo) {
+      $votes = array();
+      foreach ($userids as $userid) {
+        $vote = array(
+          "compoid" => $compo->compoid,
+          "entryorderid" => $compo->playingorder,
+          "userid" => $userid,
+          "vote" => rand(0, 5),
+          "votedate" => date("Y-m-d H:i:s")
+        );
+        $votes[] = $vote;
+      }
+      if (count($votes) > 0) {
+        SQLLib::InsertMultiRow("votes_range", $votes);
+      }
+    }
+    printf("<div class='success'>Each user voted for all entries!</div>");
+  }
+
+}
+?>
+
+<p><b>Important:</b></p>
+<ul>
+  <li><b>Do not run this plugin on production WuHu instance</b> (unless you know what you are doing)</li>
+  <li>Compos reset will also reset Compos Entries and Votes.</li>
+  <li>Entries reset will also reset Votes.</li>
+  <li>Compos fill will also fill Compos Entries.</li>
+  <li>Votes fill will override any previous voting.</li>
+</ul>
+
+<?php
 echo "<form method='post'>";
-echo "<label>Select components to reset</label>";
+echo "<label>Select components to reset:</label>";
 echo "<ul>";
 echo " <li><input type='checkbox' name='truncate[compos]' id='truncate-compos'/> <label for='truncate-compos'>Compos</label></li>";
 echo " <li><input type='checkbox' name='truncate[compoentries]' id='truncate-compoentries'/> <label for='truncate-compoentries'>Compo entries</label></li>";
+echo " <li><input type='checkbox' name='truncate[votes]' id='truncate-votes'/> <label for='truncate-votes'>Votes</label></li>";
 echo " <li><input type='checkbox' name='truncate[users]' id='truncate-users'/> <label for='truncate-users'>Users</label></li>";
 echo "</ul>";
-echo "<label>Select components to fill with lorem ipsum</label>";
+echo "<label>Select components to fill with lorem ipsum:</label>";
 echo "<ul>";
 echo " <li><input type='checkbox' name='use-unicode' id='use-unicode' checked='checked'/> <label for='use-unicode'>Use Unicode characters for compo entries titles</label></li>";
 echo " <li><input type='checkbox' name='fill[compos]' id='fill-compos'/> <label for='fill-compos'>Compos</label> </li>";
 echo " <li><input type='checkbox' name='fill[compoentries]' id='fill-compoentries'/> <label for='fill-compoentries'>Compo entries</label></li>";
+echo " <li><input type='checkbox' name='fill[votes]' id='fill-votes'/> <label for='fill-votes'>Votes</label> </li>";
 echo " <li><input type='checkbox' name='fill[users]' id='fill-users'/> <label for='fill-users'>Users (Name and password will be the same!)</label></li>";
 echo "</ul>";
-echo "<input type='submit' value='Do'/>";
+echo "<input type='submit' value='Reset and Fill Selected Items'/>";
 echo "</form>";
-
 
 ?>
