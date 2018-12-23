@@ -121,12 +121,14 @@ function perform(&$msg) {
     return 0;
   }
 
-  if (!is_writable($_POST["main_www_dir"] . "/")) {
+  $main_www_dir = isset($_POST["main_www_dir"]) ? $_POST["main_www_dir"] : '';
+
+  if (!is_writable($main_www_dir . "/")) {
     $msg = "Unable to write into user-side interface directory!";
     return 0;
   }
 
-  if (file_put_contents($_POST["main_www_dir"] . "/database.inc.php", "test") === FALSE) {
+  if (file_put_contents($main_www_dir . "/database.inc.php", "test") === FALSE) {
     $msg = "Unable to create file into user-side interface directory!";
     return 0;
   }
@@ -204,13 +206,13 @@ function perform(&$msg) {
     "define('SQL_USERNAME',\"" . addslashes($_POST["mysql_username"]) . "\");\n" .
     "define('SQL_PASSWORD',\"" . addslashes($_POST["mysql_password"]) . "\");\n" .
     "define('SQL_DATABASE',\"" . addslashes($_POST["mysql_database"]) . "\");\n" .
-    "define('WWW_DIR',\"" . $_POST["main_www_dir"] . "\");\n" .
+    "define('WWW_DIR',\"" . $main_www_dir . "\");\n" .
     "define('ADMIN_DIR',\"" . dirname($_SERVER["SCRIPT_FILENAME"]) . "\");\n" .
     "define('PASSWORD_SALT',\"" . addslashes($salt) . "\");\n" .
     "?" . ">\n";
 
   file_put_contents("database.inc.php", $db);
-  file_put_contents($_POST["main_www_dir"] . "/database.inc.php", $db);
+  file_put_contents($main_www_dir . "/database.inc.php", $db);
 
   if ($_POST["admin_username"] && $_POST["admin_password"]) {
     $htaccess =
@@ -239,7 +241,7 @@ function perform(&$msg) {
   return 1;
 }
 
-if ($_POST["main_www_dir"]) {
+if (isset($_POST["main_www_dir"])) {
   $b = perform($msg);
   if ($b) {
     echo "<div class='success'>" . htmlspecialchars($msg) . " <a href='./'>Click here to start!</a> </div>";
@@ -297,7 +299,7 @@ $directory_export = getRelativeProposedDir("export");
         <small>(This should have read/write permissions for PHP (<?= get_current_user() ?>).)</small>
       </td>
       <td>
-        <input name="main_www_dir" value="<?= htmlspecialchars($_POST["main_www_dir"] ? $_POST["main_www_dir"] : $directory_www_party) ?>"/>
+        <input name="main_www_dir" value="<?= htmlspecialchars(isset($_POST["main_www_dir"]) ? $_POST["main_www_dir"] : $directory_www_party) ?>"/>
       </td>
     </tr>
 
@@ -307,7 +309,7 @@ $directory_export = getRelativeProposedDir("export");
         <small>(This should be an organizer-only dir, possibly FTP accessible, with read/write permissions for Apache.)</small>
       </td>
       <td>
-        <input name="private_ftp_dir" value="<?= htmlspecialchars($_POST["private_ftp_dir"] ? $_POST["private_ftp_dir"] : $directory_entries_private) ?>"/>
+        <input name="private_ftp_dir" value="<?= htmlspecialchars(isset($_POST["private_ftp_dir"]) ? $_POST["private_ftp_dir"] : $directory_entries_private) ?>"/>
       </td>
     </tr>
 
@@ -320,7 +322,7 @@ $directory_export = getRelativeProposedDir("export");
         </small>
       </td>
       <td>
-        <input name="public_ftp_dir" placeholder="<?= $directory_export ?>" value="<?= htmlspecialchars($_POST["public_ftp_dir"] ? $_POST["public_ftp_dir"] : "") ?>"/>
+        <input name="public_ftp_dir" placeholder="<?= $directory_export ?>" value="<?= htmlspecialchars(isset($_POST["public_ftp_dir"]) ? $_POST["public_ftp_dir"] : "") ?>"/>
       </td>
     </tr>
 
@@ -332,7 +334,7 @@ $directory_export = getRelativeProposedDir("export");
         </small>
       </td>
       <td>
-        <input name="screenshot_dir" value="<?= htmlspecialchars($_POST["screenshot_dir"] ? $_POST["screenshot_dir"] : $directory_screenshots) ?>"/>
+        <input name="screenshot_dir" value="<?= htmlspecialchars(isset($_POST["screenshot_dir"]) ? $_POST["screenshot_dir"] : $directory_screenshots) ?>"/>
       </td>
     </tr>
 
@@ -341,8 +343,8 @@ $directory_export = getRelativeProposedDir("export");
         <small>(This will be used for both width and height.)</small>
       </td>
       <td>
-        <input name="screenshot_sizex" class="resolution" value="<?= htmlspecialchars($_POST["screenshot_sizex"] ? $_POST["screenshot_sizex"] : "640") ?>"/> x
-        <input name="screenshot_sizey" class="resolution" value="<?= htmlspecialchars($_POST["screenshot_sizey"] ? $_POST["screenshot_sizey"] : "360") ?>"/>
+        <input name="screenshot_sizex" class="resolution" value="<?= htmlspecialchars(isset($_POST["screenshot_sizex"]) ? $_POST["screenshot_sizex"] : "640") ?>"/> x
+        <input name="screenshot_sizey" class="resolution" value="<?= htmlspecialchars(isset($_POST["screenshot_sizey"]) ? $_POST["screenshot_sizey"] : "360") ?>"/>
       </td>
     </tr>
 
@@ -357,7 +359,7 @@ $directory_export = getRelativeProposedDir("export");
     <tr>
       <td>Party starting day:</td>
       <td>
-        <input name="party_firstday" type="date" value="<?= htmlspecialchars($_POST["party_firstday"] ? $_POST["party_firstday"] : date("Y-m-d")) ?>"/>
+        <input name="party_firstday" type="date" value="<?= htmlspecialchars(isset($_POST["party_firstday"]) ? $_POST["party_firstday"] : date("Y-m-d")) ?>"/>
       </td>
     </tr>
 
@@ -370,35 +372,35 @@ $directory_export = getRelativeProposedDir("export");
         ?>
       </td>
       <td>
-        <input name="mysql_database" value="<?= htmlspecialchars($_POST["mysql_database"] ? $_POST["mysql_database"] : "") ?>"/>
+        <input name="mysql_database" value="<?= htmlspecialchars(isset($_POST["mysql_database"]) ? $_POST["mysql_database"] : "wuhu") ?>"/>
       </td>
     </tr>
 
     <tr>
       <td>MySQL username for the party engine:</td>
       <td>
-        <input name="mysql_username" value="<?= htmlspecialchars($_POST["mysql_username"] ? $_POST["mysql_username"] : "") ?>"/>
+        <input name="mysql_username" value="<?= htmlspecialchars(isset($_POST["mysql_username"]) ? $_POST["mysql_username"] : "wuhu") ?>"/>
       </td>
     </tr>
 
     <tr>
       <td>MySQL password for the party engine:</td>
       <td>
-        <input name="mysql_password" value="<?= htmlspecialchars($_POST["mysql_password"] ? $_POST["mysql_password"] : "") ?>" type="password"/>
+        <input name="mysql_password" value="<?= htmlspecialchars(isset($_POST["mysql_password"]) ? $_POST["mysql_password"] : "") ?>" type="password"/>
       </td>
     </tr>
 
     <tr>
       <td>Party admin interface username:</td>
       <td>
-        <input name="admin_username" value="<?= htmlspecialchars($_POST["admin_username"] ? $_POST["admin_username"] : "") ?>"/>
+        <input name="admin_username" value="<?= htmlspecialchars(isset($_POST["admin_username"]) ? $_POST["admin_username"] : "wuhu") ?>"/>
       </td>
     </tr>
 
     <tr>
       <td>Party admin interface password:</td>
       <td>
-        <input name="admin_password" value="<?= htmlspecialchars($_POST["admin_password"] ? $_POST["admin_password"] : "") ?>" type="password"/>
+        <input name="admin_password" value="<?= htmlspecialchars(isset($_POST["admin_password"]) ? $_POST["admin_password"] : "") ?>" type="password"/>
       </td>
     </tr>
 
