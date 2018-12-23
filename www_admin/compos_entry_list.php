@@ -22,7 +22,7 @@ function changeShowingNumber($entryID, $from, $to)
   SQLLib::Query(sprintf_esc("update compoentries set playingorder=%d where id=%d",$to,$s->id));
 }
 
-if ($_GET['direction']) 
+if (isset($_GET['direction']) && $_GET['direction'])
 {
   $lock = new OpLock();
   $s = SQLLib::selectRow(sprintf_esc("select * from compoentries where id = %d",$_GET["pid"]));
@@ -42,7 +42,7 @@ run_hook("admin_compo_entrylist_preheader");
 include_once("header.inc.php");
 printf("<h2>%s</h2>\n",$compo->name);
 
-if ($_POST["submit"] == "Export!")
+if (isset($_POST["submit"]) && $_POST["submit"] == "Export!")
 {
   $lock = new OpLock(); // is this needed? probably not but it can't hurt
   

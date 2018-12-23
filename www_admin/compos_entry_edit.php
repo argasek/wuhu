@@ -1,7 +1,7 @@
 <?
 include_once("bootstrap.inc.php");
 
-  if ($_GET["select"]) 
+  if (isset($_GET["select"]) && $_GET["select"])
   {
     $lock = new OpLock();
     $e = SQLLib::selectRow(sprintf_esc("select * from compoentries where id=%d",$_GET["id"]));
