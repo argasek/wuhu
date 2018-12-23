@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("ADMIN_DIR") || !defined("PLUGINOPTIONS"))
   exit();
 
@@ -12,7 +12,7 @@ if (isset($_POST["livevoteEntries"]))
   //update_setting("livevote_compo", (int)$_POST["livevoteCompo"]);
   foreach($_POST["livevoteEntries"] as $k=>$v)
   {
-    SQLLib::updateRow("compoentries",array("livevote_enabled"=>($v=="on")),"id=".(int)$k);
+    SQLLib::updateRow("compoentries",array("livevote_enabled"=>($v=="on" ? 1 : 0)),"id=".(int)$k);
   }
 }
 
@@ -65,10 +65,10 @@ document.observe("dom:loaded",function(){
     item.down("input").observe("change",function(ev){
       var p = {};
       p[ ev.element().name ] = ev.element().checked ? "on" : "";
-      $("loading").update("Saving...");
       new Ajax.Request("",{
         method:"post",
         parameters:p,
+        onLoading:function(){ $("loading").update("Saving...") },
         onSuccess:function(){ $("loading").update("") },
       });
     });    

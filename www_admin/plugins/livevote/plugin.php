@@ -108,6 +108,26 @@ function reloadVotes()
       }
       $("compoName").update( transport.responseJSON.compoName );
       var playingorder = transport.responseJSON.entries.length;
+
+      // Remove non-longer valid entries (i.e. deselected in the WuHu admin)
+      $$("#compoEntries > li").each(function(item) {
+          var found = false;
+          var entries = transport.responseJSON.entries;
+          var id = item.getAttribute("data-entryid");
+          var i;
+
+          for (i = 0; i < entries.length; i++) {
+              var entry = entries[i];
+              if (entry.id == id) {
+                  found = true;
+                  break;
+              }
+          }
+
+          if (!found) {
+              $$("#compoEntries > li[data-entryid=" +id +"]").invoke("remove");
+          }
+      });
       $A(transport.responseJSON.entries).each(function(entry){
         var liEntry = $$("#compoEntries li[data-entryid="+entry.id+"]").first();
         if (!liEntry)
@@ -128,6 +148,12 @@ function reloadVotes()
               new Ajax.Request(location.href,{
                 "method":"POST",
                 "parameters":p,
+                onLoading:function(){
+//                  ev.element().addClassName("loading");
+                },
+                onFailure:function(){
+                    ev.element().removeClassName("loading");
+                },
                 onSuccess:function(transVote){
                   ev.element().removeClassName("loading");
                   if (!transVote.responseJSON)
@@ -150,7 +176,7 @@ function reloadVotes()
         if (entry.vote)
           liEntry.down("ul.votes li.vote[data-votevalue="+entry.vote+"]").addClassName("selected");
         var s = "";
-        s += "#" + playingorder--;
+        s += "#" + entry.playingorder;
         s += " - ";
         s += entry.title;
         if (entry.author) s += " - " + entry.author;
