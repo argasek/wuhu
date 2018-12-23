@@ -114,7 +114,7 @@ if (isset($_POST["mode"])) {
   }
   printf("</result>\n");
   file_put_contents("result.xml", ob_get_clean());
-  @chmod("result.xml", 0755);
+  @chmod("result.xml", 0644);
 }
 printf("<h2>Change beamer setting</h2>\n");
 
