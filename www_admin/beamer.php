@@ -118,16 +118,19 @@ if (isset($_POST["mode"])) {
 }
 printf("<h2>Change beamer setting</h2>\n");
 
-$f = file_get_contents("result.xml");
-preg_match("|\\<mode\\>(.*)\\</mode\\>|m", $f, $m);
+$ann = array();
 
 $s = SQLLib::selectRows("select * from compos order by start");
 
-printf("Current mode: <a href='result.xml'>%s</a>", $m[1]);
-//if ($m[0]=="announcement") {
-preg_match("/<announcementtext isHTML='(.*)'>(.*)<\/announcementtext>/sm", $f, $ann);
-//  var_dump($ann);
-//}
+if (file_exists("result.xml")) {
+  $f = file_get_contents("result.xml");
+  preg_match("|\\<mode\\>(.*)\\</mode\\>|m", $f, $m);
+
+  printf("Current mode: <a href='result.xml'>%s</a>", $m[1]);
+  preg_match("/<announcementtext isHTML='(.*)'>(.*)<\/announcementtext>/sm", $f, $ann);
+} else {
+  printf("Current mode: none");
+}
 ?>
 <div class='beamermode'>
   <h3>Announcement</h3>
