@@ -1,47 +1,80 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
 
-    <title>Wuhu slide viewer</title>
+  <title>Wuhu slide viewer</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="css/reveal.css"/>
-    <link rel="stylesheet" href="wuhu.css"/>
-    <link rel="stylesheet" href="custom.css"/>
+  <link rel="stylesheet" href="css/reveal.css"/>
+  <link rel="stylesheet" href="wuhu.css"/>
+  <link rel="stylesheet" href="custom.css"/>
 
-    <script type="text/javascript" src="lib/js/head.min.js"></script>
-    <script type="text/javascript" src="js/reveal.js"></script>
-    <script type="text/javascript" src="../prototype.js"></script>
-    <script type="text/javascript" src="wuhu.js"></script>
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="lib/js/html5shiv.js"></script>
-    <![endif]-->
-    <script type="text/javascript">
-    <!--
-    document.observe("dom:loaded",function(){
-      var hash = location.search.toQueryParams();
-      var ws = new WuhuSlideSystem({
-        width: hash.width || 1920,
-        height: hash.height || 1080,
-        newPrizegiving: hash.newPrizegiving == 'true',
+  <script type="text/javascript" src="lib/js/head.min.js"></script>
+  <script type="text/javascript" src="js/reveal.js"></script>
+  <script type="text/javascript" src="../prototype.js"></script>
+  <script type="text/javascript" src="wuhu.js"></script>
+  <!--[if lt IE 9]>
+  <script type="text/javascript" src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script type="text/javascript">
+      function toggleFullScreen() {
+          if ((document.fullScreenElement) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+              if (document.documentElement.requestFullScreen) {
+                  document.documentElement.requestFullScreen();
+              } else if (document.documentElement.mozRequestFullScreen) {
+                  document.documentElement.mozRequestFullScreen();
+              } else if (document.documentElement.webkitRequestFullScreen) {
+                  document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+              }
+          } else {
+              if (document.cancelFullScreen) {
+                  document.cancelFullScreen();
+              } else if (document.mozCancelFullScreen) {
+                  document.mozCancelFullScreen();
+              } else if (document.webkitCancelFullScreen) {
+                  document.webkitCancelFullScreen();
+              }
+          }
+      }
+
+      document.observe("dom:loaded", function () {
+          var b = document.getElementById('toggleFs').addEventListener('click', toggleFullScreen);
+          var hash = location.search.toQueryParams();
+          var ws = new WuhuSlideSystem({
+              width: hash.width || 1920,
+              height: hash.height || 1080,
+              newPrizegiving: hash.newPrizegiving == 'true',
+          });
       });
-    });    
-    //-->
-    </script>
-  </head>
+  </script>
+  <style type="text/css">
+    .fs-toggle {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.0;
+      z-index: 50001;
+    }
+  </style>
+</head>
 
-  <body>
+<body>
 
-    <div class="reveal">
+  <div class="reveal">
 
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
-      </div>
-
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
     </div>
 
-  </body>
+  </div>
+  <button id="toggleFs" type="button" class="fs-toggle">Toggle Fullscreen</button>
+</body>
 </html>
