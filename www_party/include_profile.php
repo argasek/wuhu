@@ -25,32 +25,32 @@ global $page;
 ?>
 <form action="<?=build_url("ProfileEdit")?>" method="post" id='profileForm'>
 <div id="profile">
-<div>
+<div class="form-group">
   <label>Username:</label>
   <p class="form-control" >
   <b><?=_html($user->username)?></b>
   </p>
 </div>
-<div>
+<div class="form-group">
   <label for="password">New password: (only if you want to change it)</label>
   <input name="password" type="password" id="password" class="form-control" />
 </div>
-<div>
+<div class="form-group">
   <label for="password2">New password again:</label>
   <input name="password2" type="password" id="password2" class="form-control" />
 </div>
-<div>
+<div class="form-group">
   <label for="nickname">Nick/Handle:</label>
   <input name="nickname" type="text" id="nickname" value="<?=_html($user->nickname)?>" class="form-control" required='yes' />
 </div>
-<div>
+<div class="form-group">
   <label for="group">Group: (if any)</label>
   <input name="group" type="text" id="group" value="<?=_html($user->group)?>" class="form-control" />
 </div>
 <?
 run_hook("profile_endform");
 ?>
-<div id='regsubmit'>
+<div id='regsubmit' class="form-group">
   <button class="btn btn-primary btn-default" type="submit" value="Go!">Update profile</button>
 </div>
 </div>

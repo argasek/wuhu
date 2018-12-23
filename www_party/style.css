@@ -10,6 +10,7 @@ body {
     background-color: #04032c;
     height: 100%;
     min-height: 100%;
+    margin-bottom: 32px;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -82,6 +83,9 @@ a:hover {
     color: #fff;
 }
 
+.main-container {
+    padding-bottom: 4rem;
+}
 .main-container > div > .row > div {
     /*background-color: rgba(0, 0, 0, 0.6);*/
     background: linear-gradient(to bottom, rgba(84, 6, 90,0.4) 0%, rgba(29, 1, 58, 0.7) 100%);
@@ -101,10 +105,14 @@ a:hover {
 }
 
 .navbar-inverse {
-    background-color: #1b0136;
+    background-color: #0e3c58;
 
     /*background-color: rgba(0, 0, 30, 0.7);*/
-    box-shadow: 0px 10px 38px 0px rgba(27, 1, 54, 0.65);
+    box-shadow: 0px 10px 38px 0px rgba(0, 19, 15, 0.65);
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #bdd3f7;
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
@@ -209,7 +217,7 @@ label {
 .vote-entry {
     /*background-color: rgba(35, 6, 41, 0.6);*/
     /*box-shadow: 0px 0px 4px 2px rgba(20,0,40,0.5);*/
-    background: linear-gradient(to bottom, rgba(67,67,107,1) 0%, rgba(67,67,107,0.4) 100%);
+    background: linear-gradient(to bottom, rgb(51, 98, 156) 0%, rgba(71, 140, 127, 0.4) 100%);
     border: 1px solid rgba(0,0,0,0.4);
     border-top: 1px solid rgba(0,0,0,0.5);
     border-radius: 4px;
@@ -277,6 +285,9 @@ label {
     margin-top: 2rem;
 }
 
+.text-container {
+    margin-bottom: 2rem;
+}
 
 .votelist > div {
     margin-top: 2rem;
