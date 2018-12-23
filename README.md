@@ -40,7 +40,7 @@ Set up a MySQL server, create a database, and create an account that has full re
 ## Using the beam system
 1. Click the "Slideviewer" link in the admin
 2. Enter the original slide resolution in which the design was done
-3. Press "Open viewer" - most browsers allow you to switch to fullscreen with F11.
+3. Press "Open viewer" - most browsers allow you to switch to fullscreen with F11. You can also click anywhere on the screen to toggle fullscreen and hide mouse cursor at the same time.
   
 Both beam systems rely on simple keypresses for operation.
   
@@ -54,6 +54,11 @@ Both beam systems rely on simple keypresses for operation.
 * SPACE - re-read result.xml (and quit partyslide mode)
     
 This last key essentially means that once you've used the "BEAMER" menu on the admin interface, you must press SPACE to refresh the data inside (and/or switch to another mode).
+
+## Miscellaneous
+
+1. The script `reset-wuhu.sh` allows you to clean configuration files created on initial setup and go through the process once again.
+2. If you set `reserved_votekeys` key as numeric value in the Settings, given number of votekeys will be printed using a different font. This becomes useful in case of allowing remote-voting, reserving certain number of keys for compo team, etc. 
   
 ## Credits
 Wuhu was created and is maintained by Gargaj / Conspiracy.
