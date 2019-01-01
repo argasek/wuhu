@@ -1,5 +1,6 @@
 .htpasswd
 .htaccess
+.user.ini
 database.inc.php
 result.xml
 .oplock
