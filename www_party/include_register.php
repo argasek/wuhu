@@ -1,3 +1,4 @@
+<div class="form-container">
 <?php
 if (!defined("ADMIN_DIR")) exit();
 
@@ -113,3 +114,4 @@ run_hook("register_endform");
 
 run_hook("register_end");
 ?>
+</div>

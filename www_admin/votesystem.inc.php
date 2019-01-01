@@ -75,7 +75,7 @@ class VoteRange extends Vote
     if (!isset($this->votes_a[$entry->playingorder]))
       $this->votes_a[$entry->playingorder] = 0;
 
-    printf("<select name='vote[%d][%d]'>\n",$compo->id,$entry->playingorder);
+    printf("<select name='vote[%d][%d]' class='form-control'>\n",$compo->id,$entry->playingorder);
     for ($x = $this->maxVote; $x >= $this->minVote; $x--) {
       printf("  <option value='%d'%s>%s</option>\n",$x,($x==$this->votes_a[$entry->playingorder])?" selected='selected'":"",$x?sprintf("%d point%s",$x,$x==1?"":"s"):"No vote");
     }

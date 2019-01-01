@@ -1,4 +1,5 @@
-<?
+<div class="form-container">
+<?php
 if (!defined("ADMIN_DIR")) exit();
 
 if (is_user_logged_in())
@@ -31,7 +32,7 @@ if ($_POST["login"])
 if ($_GET["login"]=="failure")
   echo "<div class='alert alert-dismissible alert-danger'>Login failed!</div>";
 ?>
-<form action="<?=build_url("Login")?>" method="post" class="text-container">
+<form action="<?=build_url("Login")?>" method="post">
 <div class="form-group">
   <label for="loginusername">Username:</label>
   <input id="loginusername" name="login" type="text" class="form-control" required='yes' />
@@ -45,3 +46,4 @@ if ($_GET["login"]=="failure")
 <?
 run_hook("login_end");
 ?>
+</div>

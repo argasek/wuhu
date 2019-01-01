@@ -1,4 +1,5 @@
-<?
+<div class="form-container">
+<?php
 if (!defined("ADMIN_DIR")) exit();
 
 global $settings;
@@ -42,50 +43,53 @@ if ($s) {
 global $page;
 ?>
 <form action="<?=$_SERVER["REQUEST_URI"]?>" method="post" enctype="multipart/form-data" id='uploadEntryForm'>
-<div id="entryform">
-<div class='formrow'>
-  <label>Compo:</label>
-  <label><select name="compo">
-    <option value='0'>-- Please select a compo:</option>
-<?
+
+<div class="form-group">
+  <label for="compoSelect">Compo:</label>
+  <select id="compoSelect" class="form-control" name="compo">
+    <option value='0'>Please select a compo:</option>
+<?php
 foreach($s as $t)
   printf("  <option value='%d'%s>%s</option>\n",$t->id,$t->id==$_POST["compo"] ? ' selected="selected"' : "",$t->name);
 ?>  
-  </select></label>
+  </select>
 </div>
-<div class='formrow'>
-  <label for='title'>Product title:</label>
-  <input id='title' name="title" type="text" value="<?=_html($_POST["title"])?>" required='yes'/>
+<div class="form-group">
+  <label for='title'>Title:</label>
+  <input class="form-control" id='title' name="title" type="text" value="<?=_html($_POST["title"])?>" required='required'/>
 </div>
-<div class='formrow'>
+<div class="form-group">
   <label for='author'>Author:</label>
-  <input id='author' name="author" type="text" value="<?=_html($_POST["author"])?>"/>
+  <input class="form-control" id='author' name="author" type="text" value="<?=_html($_POST["author"])?>"/>
 </div>
-<div class='formrow'>
+<div class="form-group">
   <label for="comment">Comment: <small>(this will be shown on the compo slide)</small></label>
-  <textarea name="comment"><?=_html($_POST["comment"])?></textarea>
+  <textarea class="form-control" name="comment"><?=_html($_POST["comment"])?></textarea>
 </div>
-<div class='formrow'>
+<div class="form-group">
   <label for='orgacomment'>Comment for the organizers: <small>(this will NOT be shown anywhere)</small></label>
-  <textarea name="orgacomment" id="orgacomment"><?=_html($_POST["orgacomment"])?></textarea>
+  <textarea class="form-control" name="orgacomment" id="orgacomment"><?=_html($_POST["orgacomment"])?></textarea>
 </div>
-<div class='formrow'>
-  <label for='entryfile'>Uploaded file:
-  <small>
-  (max. <?=ini_get("upload_max_filesize")?> - if you want to upload
-  a bigger file, just upload a dummy text file here and ask the organizers!)
-  </small></label>
-  <input id='entryfile' name="entryfile" type="file" required='yes' />
+<div class="form-group">
+  <label for='entryfile'>Uploaded file:</label>
+  <span class="control-fileupload">
+    <label for='entryfile'>File:</label>
+    <input class="form-control" id='entryfile' name="entryfile" type="file" required='required' />
+  </span>
+  <p class="help-block">
+    (max. <?=ini_get("upload_max_filesize")?> - if you want to upload
+    a bigger file, just upload a dummy text file here and ask the organizers!)
+  </p>
 </div>
-<div class='formrow'>
+<div class="form-group">
   <label for='screenshot'>Screenshot: <small>(optional - JPG, GIF or PNG!)</small></label>
-  <input id='screenshot' name="screenshot" type="file" accept="image/*" />
+  <input class="form-control" id='screenshot' name="screenshot" type="file" accept="image/*" />
 </div>
-<div class='formrow'>
+<div class="form-group">
   <input type="submit" value="Go!" />
 </div>
-</div>
 </form>
-<?
+<?php
 } else echo "Sorry, all deadlines are closed!";
 ?>
+</div>

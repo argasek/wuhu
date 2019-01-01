@@ -1,3 +1,4 @@
+<div class="form-container">
 <?php
 if (!defined("ADMIN_DIR")) exit();
 
@@ -55,3 +56,4 @@ run_hook("profile_endform");
 </div>
 </div>
 </form>
+</div>
