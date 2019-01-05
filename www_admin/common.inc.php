@@ -139,7 +139,7 @@ function handleUploadedRelease( $dataArray, &$output )
   
   $entry = null;
   $id = null;
-  if (isset($dataArray["id"]))
+  if (isset($dataArray["id"]) && $dataArray["id"] !== '')
   {
     // existing release
     $id = (int)$dataArray["id"];
