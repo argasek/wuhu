@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 
 if($_POST["upload_to_sceneorg"] && $_POST["partyname"] && function_exists("ftp_connect"))
@@ -80,7 +80,7 @@ foreach($c as $compo)
   arsort($results);
 
   $n = 1;
-  $lastpoints = -1;
+  $lastPoints = -1;
   echo "<table class='results'>\n";
   foreach($results as $k=>$v) {
     $e = SQLLib::selectRow(sprintf_esc("select * from compoentries where id = %d",$k));
