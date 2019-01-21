@@ -7,21 +7,23 @@
   <title>Wuhu slide viewer</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href='http://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <!--<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">-->
+  <!--<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">-->
 
   <link rel="stylesheet" href="css/reveal.css"/>
-    <link rel="stylesheet" href="fonts.css"/>
+  <link rel="stylesheet" href="fonts.css"/>
   <link rel="stylesheet" href="wuhu.css"/>
-    <!--<link rel="stylesheet" href="custom.css"/>-->
-    <!--<link rel="stylesheet" href="style.css"/>-->
+  <!--<link rel="stylesheet" href="custom.css"/>-->
+  <!--<link rel="stylesheet" href="style.css"/>-->
 
-    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <script>
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <script>
       $.noConflict();
       // Code that uses other library's $ can follow here.
-    </script>
-    <script type="text/javascript" src="js/jquery.svg.js"></script>
-    <script type="text/javascript" src="js/jquery.svganim.js"></script>
+  </script>
+  <script type="text/javascript" src="js/jquery.svg.js"></script>
+  <script type="text/javascript" src="js/jquery.svganim.js"></script>
 
   <script type="text/javascript" src="lib/js/head.min.js"></script>
   <script type="text/javascript" src="js/reveal.js"></script>
@@ -64,275 +66,56 @@
           });
       });
   </script>
-    <style type="text/css">
-      #b {
-        position: absolute;
-        left: 0;
-        top: 0;
-        overflow: hidden;
-        display: block;
-        z-index: 50000;
-        pointer-events: none;
-      }
+  <style type="text/css">
+    #b {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      display: block;
+      z-index: 50000;
+      pointer-events: none;
+    }
 
-      .fs-toggle {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        opacity: 0.0;
-        z-index: 50001;
-      }
+    .fs-toggle {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.0;
+      z-index: 50001;
+    }
 
-    </style>
+  </style>
 </head>
 
 <body>
 
-  <div class="reveal">
+<div class="reveal">
 
-    <!-- Any section element inside of this container is displayed as a slide -->
-    <div class="slides">
-    </div>
-
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
   </div>
-    <canvas id="b"></canvas>
-    <button id="toggleFs" type="button" class="fs-toggle">Toggle Fullscreen</button>
-    <!--<object data="images/riverwash.svg" type="image/svg+xml" id="logo" />-->
-    <script type="text/javascript">
-//      var c = b.getContext('2d');
-//      var logo = document.getElementById('logo');
-//      var p = 0;
 
-      // http://axonflux.com/handy-rgb-to-hsl-and-rgb-to-hsv-color-model-c
-      /**
-       * Converts an RGB color value to HSL. Conversion formula
-       * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
-       * Assumes r, g, and b are contained in the set [0, 255] and
-       * returns h, s, and l in the set [0, 1].
-       *
-       * @param   Number  r       The red color value
-       * @param   Number  g       The green color value
-       * @param   Number  b       The blue color value
-       * @return  Array           The HSL representation
-       */
-      function rgbToHsl(r, g, b){
-        r /= 255, g /= 255, b /= 255;
-        var max = Math.max(r, g, b), min = Math.min(r, g, b);
-        var h, s, l = (max + min) / 2;
+</div>
 
-        if(max == min){
-          h = s = 0; // achromatic
-        }else{
-          var d = max - min;
-          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-          switch(max){
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-          }
-          h /= 6;
-        }
+<div class="home-video">
+  <div
+    style="position: absolute; z-index: -1; top: 0px; left: 0px; bottom: 0px; right: 0px; overflow: hidden; background-size: cover; background-color: #D6454D; background-repeat: no-repeat; background-position: 50% 50%; background-image: none;">
+    <video autoplay="" loop="" muted="" style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; opacity: 1; width: 1922px; height: auto;">
+      <source src="https://www.demobit.party/application/uploads/videos/db2019.mp4" type="video/mp4">
+      <source src="https://www.demobit.party/application/uploads/videos/db2019.webm" type="video/webm">
+      <source src="https://www.demobit.party/application/uploads/videos/db2019.ogv" type="video/ogg">
+    </video>
+  </div>
+</div>
 
-        return [h, s, l];
-      }
-      /**
-       * Converts an HSL color value to RGB. Conversion formula
-       * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
-       * Assumes h, s, and l are contained in the set [0, 1] and
-       * returns r, g, and b in the set [0, 255].
-       *
-       * @param   Number  h       The hue
-       * @param   Number  s       The saturation
-       * @param   Number  l       The lightness
-       * @return  Array           The RGB representation
-       */
-      function hslToRgb(h, s, l){
-        var r, g, b;
+<button id="toggleFs" type="button" class="fs-toggle">Toggle Fullscreen</button>
+<!--<object data="images/riverwash.svg" type="image/svg+xml" id="logo" />-->
 
-        if(s == 0){
-          r = g = b = l; // achromatic
-        }else{
-          function hue2rgb(p, q, t){
-            if(t < 0) t += 1;
-            if(t > 1) t -= 1;
-            if(t < 1/6) return p + (q - p) * 6 * t;
-            if(t < 1/2) return q;
-            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-            return p;
-          }
-
-          var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-          var p = 2 * l - q;
-          r = hue2rgb(p, q, h + 1/3);
-          g = hue2rgb(p, q, h);
-          b = hue2rgb(p, q, h - 1/3);
-        }
-
-        return [r * 255, g * 255, b * 255];
-      }
-
-      function getHiliteFromRGB(color, value, opacity) {
-        if (color) {
-          rgb = /rgb\((\d+), (\d+), (\d+)\)/.exec(color);
-          hsl = rgbToHsl(rgb[1], rgb[2], rgb[3]);
-          hsl[2] += value;
-          if (hsl[2] > 1) {
-            hsl[2] = 1;
-          }
-          rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
-          return 'rgb(' + Math.floor(rgb[0]) + ', ' +
-                  Math.floor(rgb[1]) + ', ' +
-                  Math.floor(rgb[2]) + ')';
-        } else {
-          return '';
-        }
-      };
-
-      jQuery(window).load(function() {
-        var w = b.width = window.innerWidth;
-        var h = b.height = window.innerHeight;
-        var c = b.getContext('2d');
-
-        //l.style.width = (w * 0.835) + 'px';
-//        logo.style.height = (h*1.1) + 'px';
-//        logo.style.top = '0';
-//        logo.style.left = (w*0.03) + 'px';
-
-//        b.style.background = 'radial-gradient(circle, #32105b, #000)',
-                b.style.position = "fixed",
-                b.style.height = b.style.width = "100%",
-                b.style.left = b.style.top = 0;
-
-//        var paths = [];
-//        ps = logo.contentDocument.getElementsByTagName('path');
-//        for (var i = 0; i < ps.length; i++) {
-//          p = ps[i];
-//          if (p.pathSegList.length < 50) {
-//            p.original_fill = p.style.fill;
-//            p.hilite = getHiliteFromRGB(p.original_fill, Math.random()*40/100, 1);
-//            paths.push(p);
-//          }
-//        }
-
-        var particles = [];
-        var now = Date.now();
-        for( var j = 0; j < 100; j++) {
-          particles.push({
-            vx: -.5 + Math.random(),
-            vy: -.5 + Math.random(),
-            r: 5 + Math.floor(Math.random()*10) + Math.max(3 * Math.random()),
-            x: Math.floor(w * Math.random()),
-            y: Math.floor(h * Math.random()),
-            angle: Math.random()/1000,
-            rotate: 0.0,
-            t: now,
-            f: 0,
-            o: 0.05
-          });
-        }
-
-        function rs() {
-          w = b.width = window.innerWidth;
-          h = b.height = window.innerHeight;
-          b.style.height = b.style.width = "100%";
-        }
-        window.addEventListener('resize', rs, false);
-
-        function drawStar(cx,cy,spikes,outerRadius,innerRadius, _){
-          var rot=Math.PI/2*3;
-          var x=cx;
-          var y=cy;
-          var step=Math.PI/spikes;
-
-          c.beginPath();
-          c.moveTo(cx,cy-outerRadius);
-          for(i=0;i<spikes;i++){
-            x=cx+Math.cos(rot)*outerRadius;
-            y=cy+Math.sin(rot)*outerRadius;
-            c.lineTo(x,y);
-            rot+=step;
-
-            x=cx+Math.cos(rot)*innerRadius;
-            y=cy+Math.sin(rot)*innerRadius;
-            c.lineTo(x,y);
-            rot+=step;
-          }
-          c.lineTo(cx,cy-outerRadius);
-          c.closePath();
-          c.fillStyle = 'rgba(200,200,255,'+Math.sin(_.o)/2+')';
-          c.fill();
-        }
-
-        function u() {
-          c.clearRect(0, 0, w, h);
-//          r = Math.random()*100;
-//          if ( r > 90) {
-//            i = Math.floor(Math.random() * paths.length);
-//            jQuery(paths[i]).animate({
-//              svgFill: paths[i].hilite
-//            }, 800 + Math.random()*300).animate({
-//              svgFill: paths[i].original_fill
-//            }, 1200 + Math.random()*500);
-//          }
-
-          t = Date.now() - now;
-          particles.map(function(_, index) {
-            c.beginPath();
-            var d = Math.random();
-            cx = cy = _.r+d;
-            bx = cx * -0.5 - (cy * -0.866);
-            by = cx * -0.866 + (cy * -0.5);
-            ax = cx * -0.5 - (cy * 0.866);
-            ay = cx * 0.866 + (cy * -0.5);
-            c.save();
-            c.translate(_.x, _.y);
-            var rotate = _.rotate + _.angle;
-            if (rotate >= 1.0) { rotate = rotate - Math.floor(rotate) }
-            _.rotate = rotate;
-            rotate = (rotate * 360) * Math.PI/180;
-            c.rotate(rotate);
-//            if (index === 0) console.log(_.rotate);
-            c.translate(-_.x, -_.y);
-            drawStar(_.x, _.y, 5, _.r*2, _.r, _);
-//            c.shadowBlur = 10;
-//            c.fillStyle = 'rgba(255,255,255,1.0)';
-            c.shadowColor = 'rgba('+_.f+', '+_.f+', '+_.f+', 1)';
-//            if (_.f > 0) {
-//              dt = t - _.t;
-//              _.f -= Math.floor(dt*0.04);
-//              if (_.f < 0) _.f = 0;
-//              _.o -= Math.sin(0.3 / (255/(dt*0.04)));
-//            }
-            c.fill();
-            c.restore();
-          });
-
-          particles.map(function(_) {
-            if (_.y < 0 || _.y > h) {
-              _.vy = -_.vy;
-            } else if (_.x < 0 || _.x > w) {
-              _.vx = -_.vx;
-            }
-            _.x += _.vx;
-            _.y += _.vy;
-            r = Math.random()*10000;
-            if (r > 9998) {
-              _.f = 255;
-              _.o = 0.1;
-              _.t = t;
-            }
-          });
-
-          requestAnimationFrame(u);
-        };
-
-        u();
-      });
-    </script>
 </body>
 </html>

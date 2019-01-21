@@ -262,6 +262,7 @@ var WuhuSlideSystem = Class.create({
                             sec = this.insertSlide({"class": "compoDisplaySlide entry"});
                             sec = sec.down("div.container");
                             sec.insert(new Element("div", {"class": "upper"}));
+                            sec.insert(new Element("div", {"class": "separator"}));
                             sec.insert(new Element("div", {"class": "lower"}));
 
                             cont = sec.down("div.upper");
