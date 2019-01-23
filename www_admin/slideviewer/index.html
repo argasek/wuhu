@@ -90,6 +90,25 @@
       z-index: 50001;
     }
 
+    body {
+      background-color: #D6454D;
+    }
+    .video-overlay {
+      position: absolute;
+      z-index: -2;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      overflow: hidden;
+    }
+    .video-overlay-2 {
+      background-repeat: no-repeat;
+      background-position: 0% 100%;
+      background-image: url("images/bg-trans.png");
+      background-size: 32%;
+    }
+
   </style>
 </head>
 
@@ -104,13 +123,15 @@
 </div>
 
 <div class="home-video">
-  <div
-    style="position: absolute; z-index: -1; top: 0px; left: 0px; bottom: 0px; right: 0px; overflow: hidden; background-size: cover; background-color: #D6454D; background-repeat: no-repeat; background-position: 50% 50%; background-image: none;">
+  <div class="video-overlay">
     <video autoplay="" loop="" muted="" style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; opacity: 1; width: 1922px; height: auto;">
       <source src="https://www.demobit.party/application/uploads/videos/db2019.mp4" type="video/mp4">
       <source src="https://www.demobit.party/application/uploads/videos/db2019.webm" type="video/webm">
       <source src="https://www.demobit.party/application/uploads/videos/db2019.ogv" type="video/ogg">
     </video>
+  </div>
+  <div class="video-overlay video-overlay-2">
+
   </div>
 </div>
 
