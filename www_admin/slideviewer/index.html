@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="css/reveal.css"/>
   <link rel="stylesheet" href="fonts.css"/>
+  <link rel="stylesheet" href="fonts/purista-font.css"/>
   <link rel="stylesheet" href="wuhu.css"/>
   <!--<link rel="stylesheet" href="custom.css"/>-->
   <!--<link rel="stylesheet" href="style.css"/>-->
@@ -59,6 +60,7 @@
       document.observe("dom:loaded", function () {
           var b = document.getElementById('toggleFs').addEventListener('click', toggleFullScreen);
           var hash = location.search.toQueryParams();
+          console.log(hash.newPrizegiving == 'true');
           var ws = new WuhuSlideSystem({
               width: hash.width || 1920,
               height: hash.height || 1080,
@@ -108,6 +110,13 @@
       background-image: url("images/bg-trans.png");
       background-size: 32%;
     }
+    .video-overlay-3 {
+      background-repeat: no-repeat;
+      background-position: 40px 80px;
+      background-image: url("images/demobit-logo.png");
+      background-size: 25%;
+      opacity: 0.8;
+    }
 
   </style>
 </head>
@@ -131,6 +140,9 @@
     </video>
   </div>
   <div class="video-overlay video-overlay-2">
+
+  </div>
+  <div class="video-overlay video-overlay-3">
 
   </div>
 </div>

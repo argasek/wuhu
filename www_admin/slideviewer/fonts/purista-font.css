@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Purista';
+    src: url('Purista-MediumItalic.eot');
+    src: local('Purista Medium Italic'), local('Purista-MediumItalic'),
+        url('Purista-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('Purista-MediumItalic.woff') format('woff'),
+        url('Purista-MediumItalic.ttf') format('truetype'),
+        url('Purista-MediumItalic.svg#Purista-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Purista';
+    src: url('Purista-Medium.eot');
+    src: local('Purista Medium'), local('Purista-Medium'),
+        url('Purista-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Purista-Medium.woff') format('woff'),
+        url('Purista-Medium.ttf') format('truetype'),
+        url('Purista-Medium.svg#Purista-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Purista';
+    src: url('Purista-SemiBold.eot');
+    src: local('Purista SemiBold'), local('Purista-SemiBold'),
+        url('Purista-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('Purista-SemiBold.woff') format('woff'),
+        url('Purista-SemiBold.ttf') format('truetype'),
+        url('Purista-SemiBold.svg#Purista-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Purista';
+    src: url('Purista-Bold.eot');
+    src: local('Purista Bold'), local('Purista-Bold'),
+        url('Purista-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Purista-Bold.woff') format('woff'),
+        url('Purista-Bold.ttf') format('truetype'),
+        url('Purista-Bold.svg#Purista-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
