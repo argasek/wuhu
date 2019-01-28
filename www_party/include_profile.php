@@ -24,7 +24,7 @@ global $user;
 $user = SQLLib::selectRow(sprintf_esc("select * from users where id='%d'",get_user_id()));
 global $page;
 ?>
-<form action="<?=build_url("ProfileEdit")?>" method="post" id='profileForm'>
+<form action="<?=build_url("ProfileEdit")?>" method="post" id='profileForm' class="text-container">
 <div id="profile">
 <div class="form-group">
   <label>Username:</label>

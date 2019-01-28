@@ -83,6 +83,7 @@ if (!$f) $f = "Please create your own template.html - you can use template.html.
 $TEMPLATE = array();
 $TEMPLATE["{%MENU%}"] = $menu;
 $TEMPLATE["{%CONTENT%}"] = $content;
+$TEMPLATE["{%PAGE%}"] = $page;
 
 run_hook("index_template_elements",array("template"=>&$TEMPLATE));
 
