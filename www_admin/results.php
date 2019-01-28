@@ -48,6 +48,7 @@ echo "<h2>Results file</h2>";
 
 echo "<p>Text-only version: <a href='results_text.php'>view</a> / <a href='results_text.php?filename=results.txt'>download</a></p>";
 echo "<p>Text-only version (UTF-8): <a href='results_text.php?encoding=utf-8'>view</a> / <a href='results_text.php?encoding=utf-8&amp;filename=results.txt'>download</a></p>";
+echo "<p>CSV version (UTF-8): <a href='results_csv.php?places=5'>view</a></p>";
 
 if (function_exists("ftp_connect"))
 {
