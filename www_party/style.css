@@ -42,8 +42,8 @@ select {
 }
 
 strong {
-    font-weight: bold;
-    color: #ff173e;
+    font-weight: 600;
+    color: #ff7e7e;
 }
 
 b {
