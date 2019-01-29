@@ -54,6 +54,19 @@ b {
     color: inherit;
 }
 
+.alert-success {
+    background-color: #c9f1b9;
+}
+
+.alert-warning {
+    background-color: #fdf1b5;
+}
+
+.alert-danger {
+    background-color: #f9a6a5;
+    border-color: #b96563;
+}
+
 h1 {
     color: #f0f8ff;
 }
@@ -177,6 +190,10 @@ label {
     margin-bottom: 5px;
     display: block;
     color: #ffe9cc;
+}
+
+label small {
+    font-weight: normal;
 }
 
 #livevoteContainer .votes .vote {
@@ -334,7 +351,8 @@ label {
 }
 
 .help-block {
-    color: #97a8c9;
+    color: #e4bcbc;
+    text-shadow: 1px 1px 2px rgb(62, 26, 26);
     font-size: 90%;
 }
 

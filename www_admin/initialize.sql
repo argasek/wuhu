@@ -81,6 +81,7 @@ CREATE TABLE `users` (
   `group` text NOT NULL,
   `regtime` datetime NOT NULL,
   `regip` text NOT NULL,
+  `email` text DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

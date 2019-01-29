@@ -92,9 +92,11 @@ if (isset($_POST["fill"])) {
   if ($fillUsers) {
     for ($x = 0; $x < 5; $x++) {
       $name = str_replace(" ", "", lipsum_string(10));
+      $email = $name.'@'.$name.'.com';
       SQLLib::InsertRow("users", array(
         "username" => $name,
         "nickname" => $name,
+        "email" => $email,
         "password" => hashPassword($name),
         "group" => lipsum_string(10),
         "regtime" => date("Y-m-d H:i:s", time() + rand(60 * 60, 5 * 60 * 60)),

@@ -17,6 +17,10 @@ function validate() {
     echo "<div class='alert alert-dismissible alert-danger'>This username contains invalid characters!</div>";
     return 0;
   }
+  if (!filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)) {
+    echo "<div class='alert alert-dismissible alert-danger'>This email address is invalid!</div>";
+    return 0;
+  }
   /*
   if (!preg_match("/^[a-zA-Z0-9]{4,}$/",$_POST["password"])) {
     echo "<div class='alert alert-dismissible alert-danger'>This password contains invalid characters!</div>";
@@ -52,6 +56,7 @@ if ($_POST["username"]) {
   {
     $userdata = array(
       "username"=> ($_POST["username"]),
+      "email"=> (trim($_POST["email"])),
       "password"=> hashPassword($_POST["password"]),
       "nickname"=> ($_POST["nickname"] ? $_POST["nickname"] : $_POST["username"]),
       "group"=> ($_POST["group"]),
@@ -65,7 +70,7 @@ if ($_POST["username"]) {
       $trans = new SQLTrans();
       $userID = SQLLib::InsertRow("users",$userdata);
       SQLLib::UpdateRow("votekeys",array("userid"=>$userID),sprintf_esc("`votekey`='%s'",$_POST["votekey"]));
-      echo "<div class='alert alert-dismissible alert-success'>Registration successful!</div>";
+      echo "<div class='alert alert-dismissible alert-success'>Registration successful! You may now login.</div>";
       $success = true;
     } 
     else 
@@ -81,6 +86,10 @@ if(!$success)
 <div class="form-group">
   <label for="username">Username:</label>
   <input id="username" name="username" type="text" value="<?=_html($_POST["username"])?>" required='yes' class="form-control" />
+</div>
+<div class="form-group">
+  <label for="email">Email: <small>(required only if you want to collect a prize!)</small></label>
+  <input id="email" name="email" type="email" value="<?=_html($_POST["email"])?>" class="form-control" />
 </div>
 <div class="form-group">
   <label for="password">Password:</label>

@@ -24,7 +24,8 @@ if (isset($_GET["id"])) {
 
   printf("<ul>");
   printf("  <li><b>Nick:</b> %s</li>\n",htmlspecialchars($user->nickname));  
-  printf("  <li><b>Group:</b> %s</li>\n",htmlspecialchars($user->group));  
+  printf("  <li><b>Group:</b> %s</li>\n",htmlspecialchars($user->group));
+  printf("  <li><b>Email:</b> %s</li>\n",htmlspecialchars($user->email));
   printf("  <li><b>Public:</b> %s</li>\n",$user->visible?"yes":"no");  
   printf("  <li><b>IP:</b> %s</li>\n",$user->regip);  
   printf("  <li><b>Registration time:</b> %s</li>\n",$user->regtime);  

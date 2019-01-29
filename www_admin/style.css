@@ -359,6 +359,10 @@ label {
   margin-bottom: 5px;
 }
 
+input[type='checkbox'] + label, input[type='radio']  + label {
+  display: inline-block;
+}
+
 .beamermode label, .beamermode input {
   display: block;
 }
