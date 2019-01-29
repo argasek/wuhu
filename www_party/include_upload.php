@@ -45,9 +45,8 @@ global $page;
 <form action="<?=$_SERVER["REQUEST_URI"]?>" method="post" enctype="multipart/form-data" id='uploadEntryForm'>
 
 <div class="form-group">
-  <label for="compoSelect">Compo:</label>
+  <label for="compoSelect">Please select a compo:</label>
   <select id="compoSelect" class="form-control" name="compo">
-    <option value='0'>Please select a compo:</option>
 <?php
 foreach($s as $t)
   printf("  <option value='%d'%s>%s</option>\n",$t->id,$t->id==$_POST["compo"] ? ' selected="selected"' : "",$t->name);
@@ -64,11 +63,11 @@ foreach($s as $t)
 </div>
 <div class="form-group">
   <label for="comment">Comment: <small>(this will be shown on the compo slide)</small></label>
-  <textarea class="form-control" name="comment"><?=_html($_POST["comment"])?></textarea>
+  <textarea class="form-control" name="comment" rows="4"><?=_html($_POST["comment"])?></textarea>
 </div>
 <div class="form-group">
   <label for='orgacomment'>Comment for the organizers: <small>(this will NOT be shown anywhere)</small></label>
-  <textarea class="form-control" name="orgacomment" id="orgacomment"><?=_html($_POST["orgacomment"])?></textarea>
+  <textarea class="form-control" name="orgacomment" id="orgacomment" rows="4"><?=_html($_POST["orgacomment"])?></textarea>
 </div>
 <div class="form-group">
   <label for='entryfile'>Uploaded file:</label>
@@ -82,11 +81,14 @@ foreach($s as $t)
   </p>
 </div>
 <div class="form-group">
-  <label for='screenshot'>Screenshot: <small>(optional - JPG, GIF or PNG!)</small></label>
-  <input class="form-control" id='screenshot' name="screenshot" type="file" accept="image/*" />
+  <label for='entryfile'>Screenshot file:</label>
+  <span class="control-fileupload">
+    <label for='screenshot'>Image: <small>(optional - JPG, GIF or PNG!)</small></label>
+    <input class="form-control" id='screenshot' name="screenshot" type="file" accept="image/*" />
+  </span>
 </div>
 <div class="form-group">
-  <input type="submit" value="Go!" />
+  <button class="btn btn-primary btn-default" type="submit" value="Go!">Upload entry</button>
 </div>
 </form>
 <?php

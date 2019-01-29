@@ -1,3 +1,4 @@
+<div class="form-container">
 <?
 if (!defined("ADMIN_DIR")) exit();
 
@@ -72,68 +73,97 @@ if ($_GET["id"]) {
 
 ?>
 <form action="<?=build_url($page,array("id"=>(int)$_GET["id"])) ?>" method="post" enctype="multipart/form-data">
-<div id="entryform">
-<div class='formrow'>
-  <label for="title">Product title:</label>
-  <input id="title" name="title" type="text" value="<?=_html($entry->title)?>" required='yes'/>
+<div class='form-group'>
+  <label for="title">Entry title:</label>
+  <input class="form-control" id="title" name="title" type="text" value="<?=_html($entry->title)?>" required='yes'/>
 </div>
-<div class='formrow'>
+<div class='form-group'>
   <label for="author">Author:</label>
-  <input id="author" name="author" type="text" value="<?=_html($entry->author)?>"/>
+  <input class="form-control" id="author" name="author" type="text" value="<?=_html($entry->author)?>"/>
 </div>
-<div class='formrow'>
-  <label for="comment">Comment: (this will be shown on the compo slide)</label>
-  <textarea id="comment" name="comment"><?=_html($entry->comment)?></textarea>
+<div class='form-group'>
+  <label for="comment">Comment: <small>(this will be shown on the compo slide)</small></label>
+  <textarea class="form-control" id="comment" name="comment" rows="4"><?=_html($entry->comment)?></textarea>
 </div>
-<div class='formrow'>
-  <label id="orgacomment">Comment for the organizers: (this will NOT be shown anywhere)</label>
-  <textarea name="orgacomment"><?=_html($entry->orgacomment)?></textarea>
+<div class='form-group'>
+  <label for="orgacomment">Comment for the organizers: <small>(this will NOT be shown anywhere)</small></label>
+  <textarea id="orgacomment" class="form-control" name="orgacomment" rows="4"><?=_html($entry->orgacomment)?></textarea>
 </div>
-<div class='formrow'>
+
+<div class='form-group'>
   <label>Screenshot: (JPG, GIF or PNG!)</label>
-  <img id='screenshot' src='screenshot.php?id=<?=(int)$_GET["id"]?>&amp;show=thumb' alt='thumb'/>
-  <input name="screenshot" type="file" accept="image/*" />
+  <div class="panel">
+    <div class="panel-body">
+      <img id='screenshot' src='screenshot.php?id=<?=(int)$_GET["id"]?>&amp;show=thumb' alt='thumb' class="d-block max-w-100"/>
+    </div>
+  </div>
+
 </div>
-<div class='formrow'>
-  <label>Uploaded files</label>
-<table id='uploadedfiles'>
-<?
+
+<?php
   $a = glob($filedir . "*");
-  foreach ($a as $v) 
+?>
+
+<div class='form-group'>
+  <label>Uploaded files</label>
+<?
+  foreach ($a as $v)
   {
     $v = basename($v);
 ?>
-<tr class='<?=($v == $entry->filename?"fileselected":"fileunselected")?>'>
-  <td><?=$v?></td>
-  <td><?
-  if ($v == $entry->filename) {
-    echo "<i>Currently selected file</i>";
-  } else {
-    printf("<a href='%s&amp;select=%s'>Select this file</a>\n",$_SERVER["REQUEST_URI"],rawurlencode($v));
-    printf("<a href='%s&amp;delete=%s' class='deletefile'>Delete this file</a>\n",$_SERVER["REQUEST_URI"],rawurlencode($v));
-  }
-  ?></td>
-</tr>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title"><?=$v?></h4>
+      </div>
+      <div class="panel-body">
+        <?
+        if ($v == $entry->filename) {
+          echo "<i>Currently selected file</i>";
+        } else {
+          printf("<a class='btn btn-primary' href='%s&amp;select=%s'>Select this file</a>\n",$_SERVER["REQUEST_URI"],rawurlencode($v));
+          printf("<a class='btn btn-danger' href='%s&amp;delete=%s' class='deletefile'>Delete this file</a>\n",$_SERVER["REQUEST_URI"],rawurlencode($v));
+        }
+        ?>
+      </div>
+    </div>
 <?
   }
 ?>
-</table>
 </div>
-<div class='formrow'>
-  <label>Upload new file:
-    <small>(max. <?=ini_get("upload_max_filesize")?> - if you want to upload
-  a bigger file, just upload a dummy text file here and ask the organizers!)</small></label>
-  <input name="entryfile" type="file" />
-<?if (count($a)>1) {?>
-  <small id='multifilewarning'>(Hint: having only <u>ONE</u> file decreases the chances of having the wrong version played!)</small>
-<?}?>
+
+  <?if (count($a)>1) {?>
+    <div class='alert alert-dismissible alert-warning'>
+      <strong>Warning:</strong> having only a <u>SINGLE</u> version of uploaded production file decreases the chances of having the wrong version played!
+    </div>
+  <?}?>
+
+
+  <div class="form-group">
+  <label for='entryfile'>Upload a new file:</label>
+  <span class="control-fileupload">
+    <label for='entryfile'>File:</label>
+    <input class="form-control" id='entryfile' name="entryfile" type="file" />
+  </span>
+  <p class="help-block">
+    (max. <?=ini_get("upload_max_filesize")?> - if you want to upload
+    a bigger file, just upload a dummy text file here and ask the organizers!)
+  </p>
 </div>
-<div class='formrow'>
+<div class="form-group">
+  <label for='entryfile'>Update screenshot:</label>
+  <span class="control-fileupload">
+    <label for='screenshot'>Image: <small>(optional - JPG, GIF or PNG!)</small></label>
+    <input class="form-control" id='screenshot' name="screenshot" type="file" accept="image/*" />
+  </span>
+</div>
+
+<div class="form-group">
   <input name="entryid" type='hidden' value="<?=(int)$_GET["id"]?>" />
-  <input type="submit" value="Go!" />
+  <button class="btn btn-primary btn-default" type="submit" value="Go!">Update your entry</button>
 </div>
-</div>
+
 </form>
+</div>
 <?
 } else {
   $entries = SQLLib::selectRows(sprintf_esc("select * from compoentries where userid=%d",get_user_id()));

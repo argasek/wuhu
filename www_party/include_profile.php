@@ -42,7 +42,7 @@ global $user;
 $user = SQLLib::selectRow(sprintf_esc("select * from users where id='%d'",get_user_id()));
 global $page;
 ?>
-<form action="<?=build_url("ProfileEdit")?>" method="post" id='profileForm' class="text-container">
+<form action="<?=build_url("ProfileEdit")?>" method="post" id='profileForm'>
 <div id="profile">
 <div class="form-group">
   <label>Username:</label>
@@ -55,7 +55,7 @@ global $page;
   <input id="email" name="email" type="email" value="<?=_html($user->email)?>" class="form-control" />
 </div>
 <div class="form-group">
-  <label for="password">New password: (only if you want to change it)</label>
+  <label for="password">New password: <small>(only if you want to change it)</small></label>
   <input name="password" type="password" id="password" class="form-control" />
 </div>
 <div class="form-group">
@@ -67,7 +67,7 @@ global $page;
   <input name="nickname" type="text" id="nickname" value="<?=_html($user->nickname)?>" class="form-control" required='yes' />
 </div>
 <div class="form-group">
-  <label for="group">Group: (if any)</label>
+  <label for="group">Group(s): <small>(if any)</small></label>
   <input name="group" type="text" id="group" value="<?=_html($user->group)?>" class="form-control" />
 </div>
 <?

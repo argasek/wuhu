@@ -82,7 +82,7 @@ if ($_POST["username"]) {
 if(!$success)
 {
 ?>
-<form action="<?=build_url("Login")?>" method="post" class="text-container" id='registerForm'>
+<form action="<?=build_url("Login")?>" method="post" id='registerForm'>
 <div class="form-group">
   <label for="username">Username:</label>
   <input id="username" name="username" type="text" value="<?=_html($_POST["username"])?>" required='yes' class="form-control" />
@@ -108,7 +108,7 @@ if(!$success)
   <input id="nickname" name="nickname" type="text" value="<?=_html($_POST["nickname"])?>" required='yes' class="form-control" />
 </div>
 <div class="form-group">
-  <label for="group">Group: (if any)</label>
+  <label for="group">Group(s): (if any)</label>
   <input id="group" name="group" type="text" value="<?=_html($_POST["group"])?>" class="form-control" />
 </div>
 <?
