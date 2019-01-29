@@ -50,6 +50,10 @@ b {
     color: #9e726e;
 }
 
+.font-weight-semibold {
+    font-weight: 500;
+}
+
 .alert b {
     color: inherit;
 }

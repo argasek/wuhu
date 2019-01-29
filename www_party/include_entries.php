@@ -1,4 +1,3 @@
-<div class="form-container">
 <?
 if (!defined("ADMIN_DIR")) exit();
 
@@ -27,17 +26,22 @@ function perform(&$msg)
   $msg = $out["error"];
   return 0;
 } 
-if ($_POST["entryid"]) {
-  $msg = "";
-  $id = perform($msg);
-  if ($id) {
-    echo "<div class='alert alert-dismissible alert-success'>Update successful!</div>";
-  } else {
-    echo "<div class='alert alert-dismissible alert-danger'>Error: ".$msg."</div>";
-  }
-}
 global $page;
 if ($_GET["id"]) {
+?>
+  <div class="form-container">
+<?php
+
+  if ($_POST["entryid"]) {
+    $msg = "";
+    $id = perform($msg);
+    if ($id) {
+      echo "<div class='alert alert-dismissible alert-success'>Update successful!</div>";
+    } else {
+      echo "<div class='alert alert-dismissible alert-danger'>Error: ".$msg."</div>";
+    }
+  }
+
   $entry = SQLLib::selectRow(sprintf_esc("select * from compoentries where id=%d",$_GET["id"]));
   if ($entry->userid != $_SESSION["logindata"]->id)
     die("nice try.");
@@ -166,35 +170,35 @@ if ($_GET["id"]) {
 </div>
 <?
 } else {
+?>
+<div class="form-container">
+<?php
   $entries = SQLLib::selectRows(sprintf_esc("select * from compoentries where userid=%d",get_user_id()));
-  echo "<table class='entrylist'>";
-  echo "<tr>";
-  echo "  <th>#</th>";
-  echo "  <th>Screenshot</th>";
-  echo "  <th>Compo</th>";
-  echo "  <th>Title</th>";
-  echo "  <th>Author</th>";
-  echo "  <th>Options</th>";
   run_hook("editentries_endheader");
-  echo "</tr>";
   global $entry;
   foreach ($entries as $entry) 
   {
     $compo = get_compo( $entry->compoid );
-    echo "<tr>";
-    printf("<td>#%d</td>",$entry->id);
-    printf("<td><a href='screenshot.php?id=%d' target='_blank'><img src='screenshot.php?id=%d&amp;show=thumb'/></a></td>",$entry->id,$entry->id );
-    printf("<td>%s</td>",_html($compo->name) );
-    printf("<td>%s</td>",_html($entry->title) );
-    printf("<td>%s</td>",_html($entry->author) );
+    echo "<div class='panel panel-default'>";
+    echo "<div class='panel-heading'>";
+    echo "<h4 class='panel-title'>";
+    printf("<strong class='font-weight-semibold'>Compo: %s</strong><br>",_html($compo->name) );
+    printf("<b>#%d </b>",$entry->id);
+    printf("<span class='font-weight-semibold'>%s</span> by ",_html($entry->title) );
+    printf("<span>%s</span>",_html($entry->author) );
+    echo "</h4>";
+    echo "</div>";
+    echo "<div class='panel-body'>";
+    printf("<p><a href='screenshot.php?id=%d' target='_blank' class='d-block'><img class='d-block max-w-100' src='screenshot.php?id=%d&amp;show=thumb'/></a></p>",$entry->id,$entry->id );
     $compo = get_compo( $entry->compoid );
     if ($compo->uploadopen || $compo->updateopen)
-      printf("<td><a href='%s&amp;id=%d'>Edit entry</a></td>",$_SERVER["REQUEST_URI"],$entry->id );
-    else
-      printf("<td>&nbsp;</td>" );
+      printf("<div class='form-group text-center'><a class='btn btn-primary' href='%s&amp;id=%d'>Edit this compo entry</a></div>",$_SERVER["REQUEST_URI"],$entry->id );
     run_hook("editentries_endrow",array("entry"=>$entry));
-    echo "</tr>";
+    echo "</div>";
+    echo "</div>";
   }
-  echo "</table>";
+?>
+</div>
+<?php
 }
 ?>
