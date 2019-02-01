@@ -17,7 +17,7 @@ function validate() {
     echo "<div class='alert alert-dismissible alert-danger'>This username contains invalid characters!</div>";
     return 0;
   }
-  if (!filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)) {
+  if (strlen(trim($_POST["email"])) > 0 && !filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)) {
     echo "<div class='alert alert-dismissible alert-danger'>This email address is invalid!</div>";
     return 0;
   }
