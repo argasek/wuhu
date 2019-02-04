@@ -34,10 +34,10 @@ foreach ($c as $compo) {
   $n = 1;
 
   foreach ($results as $k => $v) {
-    $e = SQLLib::selectRow(sprintf_esc("select * from compoentries where id = %d", $k));
+    $e = SQLLib::selectRow(sprintf_esc("SELECT compoentries.*, email FROM compoentries LEFT JOIN users ON compoentries.userid = users.id WHERE compoentries.id = %d", $k));
     // Compo, place, prod, group
     //$line = sprintf("%s,%s,%s\n", $compo->name, $n, trim($e->title), trim($e->author));
-    $line = array($compo->name, $n, trim($e->title), trim($e->author));
+    $line = array($compo->name, $n, trim($e->title), trim($e->author), trim($e->email));
     fputcsv($out, $line);
 
     $n++;
